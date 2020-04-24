@@ -80,6 +80,9 @@ data:
         {{- range $key, $val := .Values.runners.podAnnotations }}
         --kubernetes-pod-annotations {{ $key | quote }}:{{ $val | quote }} \
         {{- end }}
+        {{- if and (hasKey .Values.runners "description") .Values.runners.description }}
+        --description={{ .Values.runners.description | quote -}} \
+        {{- end }}
         {{- range $key, $value := .Values.runners.env }}
         --env {{ $key | quote -}} = {{- $value | quote }} \
         {{- end }}

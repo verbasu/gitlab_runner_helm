@@ -132,6 +132,10 @@ runners:
   ##
   # tags: ""
 
+  ## Specify the description for the runner.
+  ##
+  # description: ""
+
   ## Specify if jobs without tags should be run.
   ## If not specified, Runner will default to true if no tags were specified. In other case it will
   ## default to false.
