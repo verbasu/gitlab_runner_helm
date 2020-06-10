@@ -35,8 +35,17 @@ spec:
     spec:
       securityContext:
         runAsUser: {{ .Values.securityContext.runAsUser }}
+        {{- if .Values.securityContext.runAsGroup }}
+        runAsGroup: {{ .Values.securityContext.runAsGroup }}
+        {{- end}}
         {{- if .Values.securityContext.fsGroup }}
         fsGroup: {{ .Values.securityContext.fsGroup }}
+        {{- end}}
+        {{- if .Values.securityContext.supplementalGroups }}
+        supplementalGroups:
+        {{-   range .Values.securityContext.supplementalGroups }}
+          - {{ . }}
+        {{-   end}}
         {{- end}}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       initContainers:
