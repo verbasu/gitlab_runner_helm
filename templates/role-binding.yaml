@@ -8,6 +8,9 @@ metadata:
     chart: {{ include "gitlab-runner.chart" . }}
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
+  {{ if not .Values.rbac.clusterWideAccess -}}
+  namespace: {{ default .Release.Namespace .Values.runners.namespace | quote }}
+  {{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: {{ if .Values.rbac.clusterWideAccess }}"ClusterRole"{{ else }}"Role"{{ end }}
