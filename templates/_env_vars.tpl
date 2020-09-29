@@ -15,8 +15,10 @@
   {{- end }}
 - name: RUNNER_TAG_LIST
   value: {{ default "" .Values.runners.tags | quote }}
+{{- if .Values.runners.outputLimit }}
 - name: RUNNER_OUTPUT_LIMIT
-  value: {{ default "" .Values.runners.outputLimit | quote }}
+  value: {{ .Values.runners.outputLimit | quote }}
+{{- end}}
 - name: KUBERNETES_IMAGE
   value: {{ .Values.runners.image | quote }}
 {{ if .Values.runners.privileged }}
@@ -25,8 +27,10 @@
 {{ end }}
 - name: KUBERNETES_NAMESPACE
   value: {{ default .Release.Namespace .Values.runners.namespace | quote }}
+{{- if .Values.runners.pollTimeout}}
 - name: KUBERNETES_POLL_TIMEOUT
-  value: {{ default "" .Values.runners.pollTimeout | quote }}
+  value: {{ .Values.runners.pollTimeout | quote }}
+{{- end }}
 - name: KUBERNETES_CPU_LIMIT
   value: {{ default "" .Values.runners.builds.cpuLimit | quote }}
 - name: KUBERNETES_CPU_LIMIT_OVERWRITE_MAX_ALLOWED

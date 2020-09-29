@@ -54,9 +54,15 @@ data:
       --working-directory=/home/gitlab-runner
 
   config.toml: |
+    {{- if .Values.concurrent }}
     concurrent = {{ .Values.concurrent }}
+    {{- end }}
+    {{- if .Values.checkInterval}}
     check_interval = {{ .Values.checkInterval }}
-    log_level = {{ default "info" .Values.logLevel | quote }}
+    {{- end }}
+    {{- if .Values.logLevel }}
+    log_level = {{ .Values.logLevel | quote }}
+    {{- end }}
     {{- if .Values.logFormat }}
     log_format = {{ .Values.logFormat | quote }}
     {{- end }}
@@ -66,12 +72,21 @@ data:
     {{- if .Values.sentryDsn }}
     sentry_dsn = "{{ .Values.sentryDsn }}"
     {{- end }}
+  
+  {{ if .Values.runners.config }}
+  config.template.toml: {{ toYaml .Values.runners.config | indent 2 }}
+  {{ end }}
+
   configure: |
     set -e
     cp /init-secrets/* /secrets
   register-the-runner: |
     #!/bin/bash
     MAX_REGISTER_ATTEMPTS=30
+
+    {{- if not .Values.runners.config }}
+    echo "\e[33mWARN: You don't seem to be using the Runner config template functionality. Configuring your Runner through that the template is recommended as other configuration options will be deprecated in 1.0. Read more at https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration\e[0m"
+    {{- end }}
 
     for i in $(seq 1 "${MAX_REGISTER_ATTEMPTS}"); do
       echo "Registration attempt ${i} of ${MAX_REGISTER_ATTEMPTS}"
@@ -110,6 +125,9 @@ data:
         --kubernetes-pod-security-context-supplemental-groups {{ $gid | quote }} \
         {{-     end }}
         {{-   end }}
+        {{- end }}
+        {{- if .Values.runners.config }}
+        --template-config /scripts/config.template.toml \
         {{- end }}
         --non-interactive
 
