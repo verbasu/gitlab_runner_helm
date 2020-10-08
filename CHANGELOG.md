@@ -1,3 +1,9 @@
+## v0.22.0-rc2 (2020-10-08)
+
+### Maintenance
+
+- Update GitLab Runner version to 13.5.0-rc2
+
 ## v0.22.0-rc1 (2020-10-08)
 
 ### New features
