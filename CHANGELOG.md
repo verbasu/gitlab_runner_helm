@@ -1,3 +1,18 @@
+## v0.22.0-rc1 (2020-10-08)
+
+### New features
+
+- Add pull secrets to service account for runner image !241 (Horatiu Eugen Vlad @hvlad)
+
+### Maintenance
+
+- Set allowPrivilegeEscalation to false for gitlab-runner pod !243 (Horatiu Eugen Vlad @hvlad)
+- Update GitLab Runner version to 13.5.0-rc1
+
+### Documentation changes
+
+- Add comment on ubuntu image & securityContext !260
+
 ## v0.21.0 (2020-09-21)
 
 ### Maintenance
