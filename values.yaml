@@ -132,9 +132,9 @@ runners:
   ##
   # tags: ""
 
-  ## Specify the description for the runner.
+  ## Specify the name for the runner.
   ##
-  # description: ""
+  # name: ""
 
   ## Specify if jobs without tags should be run.
   ## If not specified, Runner will default to true if no tags were specified. In other case it will
