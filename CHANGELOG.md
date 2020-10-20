@@ -1,19 +1,13 @@
-## v0.22.0-rc2 (2020-10-08)
-
-### Maintenance
-
-- Update GitLab Runner version to 13.5.0-rc2
-
-## v0.22.0-rc1 (2020-10-08)
+## v0.22.0 (2020-10-20)
 
 ### New features
 
+- Update GitLab Runner version to 13.5.0
 - Add pull secrets to service account for runner image !241 (Horatiu Eugen Vlad @hvlad)
 
 ### Maintenance
 
 - Set allowPrivilegeEscalation to false for gitlab-runner pod !243 (Horatiu Eugen Vlad @hvlad)
-- Update GitLab Runner version to 13.5.0-rc1
 
 ### Documentation changes
 
