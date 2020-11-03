@@ -13,12 +13,11 @@ GitLab instance is reachable at:
         gitlab/gitlab-runner
 {{- end -}}
 
-{{- $config := include "gitlab-runner.runners.config" . }}
-{{ if not $config }}
+{{ if not .Values.runners.config }}
 #############################################################################################
 ## WARNING: You don't seem to be using the Runner config template functionality.           ##
 ## Configuring your Runner through that the template is recommended as other configuration ##
-## options will be deprecated in 1.0. Read more at                                         ## 
+## options will be deprecated in 1.0. Read more at                                         ##
 ## https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration.        ##
 #############################################################################################
 {{ end}}

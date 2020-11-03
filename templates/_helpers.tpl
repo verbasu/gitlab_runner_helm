@@ -50,13 +50,6 @@ Template for outputing the gitlabUrl
 {{- end -}}
 
 {{/*
-Template for outputing the runners config
-*/}}
-{{- define "gitlab-runner.runners.config" -}}
-{{- .Values.runners.config | quote -}}
-{{- end -}}
-
-{{/*
 Template runners.cache.s3ServerAddress in order to allow overrides from external charts.
 */}}
 {{- define "gitlab-runner.cache.s3ServerAddress" }}
