@@ -119,7 +119,7 @@ spec:
       - name: init-runner-secrets
         projected:
           sources:
-            {{- if and .Values.runners.cache .Values.runners.cache.cacheType }}
+            {{- if and .Values.runners.cache .Values.runners.cache.cacheType .Values.runners.cache.secretName }}
             {{-   if and (include "gitlab-runner.cache.secret" .) (eq .Values.runners.cache.cacheType "s3") }}
             - secret:
                 name: {{ include "gitlab-runner.cache.secret" . }}
