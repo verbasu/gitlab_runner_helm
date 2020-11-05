@@ -16,7 +16,7 @@ GitLab instance is reachable at:
 {{ if not .Values.runners.config }}
 #############################################################################################
 ## WARNING: You don't seem to be using the GitLab Runner config template functionality.    ##
-## Configuring the GitLab Runner through that the template is recommended as other         ##
+## Configuring the GitLab Runner through that template is recommended as other             ##
 ## configuration options will be deprecated in Helm Chart 1.0. Read more at                ##
 ## https://docs.gitlab.com/runner/install/kubernetes.html#using-configuration-template.    ##
 #############################################################################################
