@@ -66,6 +66,11 @@ data:
     {{- if .Values.sentryDsn }}
     sentry_dsn = "{{ .Values.sentryDsn }}"
     {{- end }}
+  
+  {{ if .Values.runners.config }}
+  config.template.toml: {{ toYaml .Values.runners.config | indent 2 }}
+  {{ end }}
+
   configure: |
     set -e
     cp /init-secrets/* /secrets
@@ -110,6 +115,9 @@ data:
         --kubernetes-pod-security-context-supplemental-groups {{ $gid | quote }} \
         {{-     end }}
         {{-   end }}
+        {{- end }}
+        {{- if .Values.runners.config }}
+        --template-config /scripts/config.template.toml \
         {{- end }}
         --non-interactive
 
