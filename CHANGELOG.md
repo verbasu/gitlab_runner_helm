@@ -1,3 +1,10 @@
+## v0.23.0-rc1 (2020-11-10)
+
+### New features
+
+- Update GitLab Runner version to 13.6.0-rc1
+- Allow user to specify any runner configuraton !271
+
 ## v0.22.0 (2020-10-20)
 
 ### New features
