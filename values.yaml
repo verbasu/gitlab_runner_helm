@@ -136,6 +136,10 @@ runners:
       [runners.kubernetes]
         image = "ubuntu:16.04"
 
+  ## Which executor should be used
+  ##
+  # executor: kubernetes
+
   ## Default container image to use for builds when none is specified
   ##
   ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration

@@ -6,7 +6,7 @@
 - name: RUNNER_REQUEST_CONCURRENCY
   value: {{ default 1 .Values.runners.requestConcurrency | quote }}
 - name: RUNNER_EXECUTOR
-  value: "kubernetes"
+  value: {{ default "kubernetes" .Values.runners.executor | quote }}
 - name: REGISTER_LOCKED
   {{ if or (not (hasKey .Values.runners "locked")) .Values.runners.locked -}}
   value: "true"
@@ -19,6 +19,7 @@
 - name: RUNNER_OUTPUT_LIMIT
   value: {{ .Values.runners.outputLimit | quote }}
 {{- end}}
+{{- if eq (default "kubernetes" .Values.runners.executor) "kubernetes" }}
 - name: KUBERNETES_IMAGE
   value: {{ .Values.runners.image | quote }}
 {{ if .Values.runners.privileged }}
@@ -86,6 +87,7 @@
 - name: KUBERNETES_POD_SECURITY_CONTEXT_FS_GROUP
   value: {{ .Values.runners.pod_security_context.fs_group | quote }}
 {{-   end }}
+{{- end }}
 {{- end }}
 {{- if .Values.runners.cache -}}
 {{ include "gitlab-runner.cache" . }}
