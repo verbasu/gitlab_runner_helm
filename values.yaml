@@ -17,6 +17,13 @@
 ##
 imagePullPolicy: IfNotPresent
 
+## Specifying ImagePullSecrets on a Pod
+## Kubernetes supports specifying container image registry keys on a Pod.
+## ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
+##
+# imagePullSecrets: 
+#   - name: "image-pull-secret"
+
 ## The GitLab Server URL (with protocol) that want to register the runner against
 ## ref: https://docs.gitlab.com/runner/commands/README.html#gitlab-runner-register
 ##
