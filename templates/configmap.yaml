@@ -14,7 +14,7 @@ data:
     mkdir -p /home/gitlab-runner/.gitlab-runner/
     cp /scripts/config.toml /home/gitlab-runner/.gitlab-runner/
 
-    # Register the runner
+    # Set up environment variables for cache
     if [[ -f /secrets/accesskey && -f /secrets/secretkey ]]; then
       export CACHE_S3_ACCESS_KEY=$(cat /secrets/accesskey)
       export CACHE_S3_SECRET_KEY=$(cat /secrets/secretkey)
@@ -32,6 +32,11 @@ data:
       fi
     fi
 
+    if [[ -f /secrets/azure-account-name && -f /secrets/azure-account-key ]]; then
+      export CACHE_AZURE_ACCOUNT_NAME=$(cat /secrets/azure-account-name)
+      export CACHE_AZURE_ACCOUNT_KEY=$(cat /secrets/azure-account-key)
+    fi
+
     if [[ -f /secrets/runner-registration-token ]]; then
       export REGISTRATION_TOKEN=$(cat /secrets/runner-registration-token)
     fi
@@ -40,6 +45,7 @@ data:
       export CI_SERVER_TOKEN=$(cat /secrets/runner-token)
     fi
 
+    # Register the runner
     if ! sh /scripts/register-the-runner; then
       exit 1
     fi
