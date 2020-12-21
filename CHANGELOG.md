@@ -1,8 +1,8 @@
-## v0.24.0-rc1 (2020-12-10)
+## v0.24.0 (2020-12-21)
 
 ### New features
 
-- Update GitLab Runner version to 13.7.0-rc1
+- Update GitLab Runner version to 13.7.0
 - add optional 'imagePullSecrets' to deployment !269 (Christian Schoofs @schoofsc)
 
 ### Other changes
