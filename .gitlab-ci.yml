@@ -5,6 +5,7 @@ default:
 
 variables:
   GIT_CLONE_PATH: $CI_BUILDS_DIR/gitlab-runner
+  STABLE_REPO_URL: https://charts.helm.sh/stable
 
 stages:
 - test
@@ -18,7 +19,7 @@ lint:
 release development:
   stage: release
   script:
-  - helm init --client-only
+  - helm init --client-only --stable-repo-url=${STABLE_REPO_URL}
   - helm package .
   when: manual
   only:
@@ -38,7 +39,7 @@ release beta:
   script:
   - apk add --no-cache py-pip
   - pip install awscli
-  - helm init --client-only
+  - helm init --client-only --stable-repo-url=${STABLE_REPO_URL}
   - 'beta_info=$(git describe --long | sed -r "s/v[0-9\.]+(-rc[0-9]+)?-//")'
   - 'build_time=$(date +%s)'
   - 'sed -r "s/(version: [0-9\.]+-beta)/\1-${build_time}-${beta_info}/" -i Chart.yaml'
