@@ -17,14 +17,6 @@ rules:
 {{ toYaml .Values.rbac.podSecurityPolicy.resourceNames | indent 2 }}
 {{- end }}
 - apiGroups: [""]
-  {{- if .Values.rbac.resources }}
-  resources: [{{ join ", " .Values.rbac.resources }}]
-  {{- else }}
-  resources: ["*"]
-  {{- end }}
-  {{- if .Values.rbac.verbs }}
-  verbs: [{{ join ", " .Values.rbac.verbs }}]
-  {{- else }}
-  verbs: ["*"]
-  {{- end }}
+  resources: {{ (default (list "*") .Values.rbac.resources | toJson) }}
+  verbs: {{ (default (list "*") .Values.rbac.verbs | toJson) }}
 {{- end -}}
