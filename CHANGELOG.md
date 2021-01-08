@@ -1,3 +1,19 @@
+## v0.25.0-rc1 (2021-01-08)
+
+### New features
+
+- Support secrets for Azure cache !277
+- Update GitLab Runner version to 13.8.0-rc1
+
+### Maintenance
+
+- Fix release CI stage failing due to Helm stable deprecation !278
+- Update GitLab Changelog configuration !275
+
+### Documentation changes
+
+- Update link to doc in README.md !276
+
 ## v0.24.0 (2020-12-21)
 
 ### New features
