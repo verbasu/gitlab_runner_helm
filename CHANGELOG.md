@@ -1,9 +1,9 @@
-## v0.25.0-rc1 (2021-01-08)
+## v0.25.0 (2021-01-20)
 
 ### New features
 
 - Support secrets for Azure cache !277
-- Update GitLab Runner version to 13.8.0-rc1
+- Update GitLab Runner version to 13.8.0
 
 ### Maintenance
 
