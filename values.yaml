@@ -50,6 +50,11 @@ imagePullPolicy: IfNotPresent
 ##
 # unregisterRunners: true
 
+## Specify the name of the scheduler which used to schedule runner pods.
+## Kubernetes supports multiple scheduler configurations.
+## ref: https://kubernetes.io/docs/reference/scheduling
+# schedulerName: "my-custom-scheduler"
+
 ## When stopping the runner, give it time to wait for its jobs to terminate.
 ##
 ## Updating the runner's chart version or configuration will cause the runner container
