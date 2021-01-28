@@ -471,3 +471,16 @@ podLabels: {}
   #   pods:
   #     metricName: gitlab_runner_jobs
   #     targetAverageValue: 400m
+
+## Secrets to be additionally mounted to the containers.
+## All secrets are mounted through init-runner-secrets volume
+## and placed as readonly at /init-secrets in the init container
+## and finally copied to an in-memory volume runner-secrets that is
+## mounted at /secrets.
+secrets: []
+  # Example:
+  # - name: my-secret
+  # - name: myOtherSecret
+  #   items:
+  #     - key: key_one
+  #       path: path_one
