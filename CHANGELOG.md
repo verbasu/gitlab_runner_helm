@@ -1,3 +1,14 @@
+## v0.26.0-rc1 (2021-02-09)
+
+### New features
+
+- Update GitLab Runner version to 13.9.0-rc1
+- Make executor configurable !273 (Matthias Baur @m.baur)
+
+### Other changes
+
+- Typo fix !282 (Ben Bodenmiller @bbodenmiller)
+
 ## v0.25.0 (2021-01-20)
 
 ### New features
