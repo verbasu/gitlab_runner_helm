@@ -145,6 +145,11 @@ spec:
                     path: runner-registration-token
                   - key: runner-token
                     path: runner-token
+
+            {{- range .Values.secrets }}
+            - secret:
+{{ toYaml . | indent 16 }}
+            {{- end }}
       {{- if .Values.certsSecretName }}
       - name: custom-certs
         secret:
