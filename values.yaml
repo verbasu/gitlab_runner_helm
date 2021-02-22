@@ -6,7 +6,7 @@
 ## ref: https://hub.docker.com/r/gitlab/gitlab-runner/tags/
 ##
 ## Note: If you change the image to the ubuntu release
-##       don't forget to change the securityContext; 
+##       don't forget to change the securityContext;
 ##       these images run on different user IDs.
 ##
 # image: gitlab/gitlab-runner:alpine-v11.6.0
@@ -21,8 +21,11 @@ imagePullPolicy: IfNotPresent
 ## Kubernetes supports specifying container image registry keys on a Pod.
 ## ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
 ##
-# imagePullSecrets: 
+# imagePullSecrets:
 #   - name: "image-pull-secret"
+
+## How many runner pods to launch.
+# replicas: 1
 
 ## The GitLab Server URL (with protocol) that want to register the runner against
 ## ref: https://docs.gitlab.com/runner/commands/README.html#gitlab-runner-register
