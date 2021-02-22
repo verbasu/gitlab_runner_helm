@@ -1,14 +1,8 @@
-## v0.26.0-rc2 (2021-02-15)
+## v0.26.0 (2021-02-22)
 
 ### New features
 
-- Update GitLab Runner version to 13.9.0-rc2
-
-## v0.26.0-rc1 (2021-02-09)
-
-### New features
-
-- Update GitLab Runner version to 13.9.0-rc1
+- Update GitLab Runner version to 13.9.0
 - Make executor configurable !273 (Matthias Baur @m.baur)
 
 ### Other changes
