@@ -41,7 +41,7 @@ spec:
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       initContainers:
       - name: configure
-        command: ['sh', '/config/configure']
+        command: ['sh', '/configmaps/configure']
         image: {{ include "gitlab-runner.image" . }}
         imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
         securityContext:
@@ -52,8 +52,8 @@ spec:
         - name: runner-secrets
           mountPath: /secrets
           readOnly: false
-        - name: scripts
-          mountPath: /config
+        - name: configmaps
+          mountPath: /configmaps
           readOnly: true
         - name: init-runner-secrets
           mountPath: /init-secrets
@@ -73,12 +73,12 @@ spec:
         securityContext:
           allowPrivilegeEscalation: false
         {{- include "gitlab-runner.unregisterRunners" . | nindent 8 }}
-        command: ["/bin/bash", "/scripts/entrypoint"]
+        command: ["/bin/bash", "/configmaps/entrypoint"]
         env:
         {{ include "gitlab-runner.runner-env-vars" . | indent 8 }}
         livenessProbe:
           exec:
-            command: ["/bin/bash", "/scripts/check-live"]
+            command: ["/bin/bash", "/configmaps/check-live"]
           initialDelaySeconds: 60
           timeoutSeconds: 1
           periodSeconds: 10
@@ -100,8 +100,8 @@ spec:
           mountPath: /secrets
         - name: etc-gitlab-runner
           mountPath: /home/gitlab-runner/.gitlab-runner
-        - name: scripts
-          mountPath: /scripts
+        - name: configmaps
+          mountPath: /configmaps
         {{- if .Values.certsSecretName }}
         - name: custom-certs
           readOnly: true
@@ -155,7 +155,7 @@ spec:
         secret:
           secretName: {{ .Values.certsSecretName }}
       {{- end }}
-      - name: scripts
+      - name: configmaps
         configMap:
           name: {{ include "gitlab-runner.fullname" . }}
     {{- if .Values.imagePullSecrets }}

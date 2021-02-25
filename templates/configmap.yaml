@@ -12,7 +12,7 @@ data:
     #!/bin/bash
     set -e
     mkdir -p /home/gitlab-runner/.gitlab-runner/
-    cp /scripts/config.toml /home/gitlab-runner/.gitlab-runner/
+    cp /configmaps/config.toml /home/gitlab-runner/.gitlab-runner/
 
     # Set up environment variables for cache
     if [[ -f /secrets/accesskey && -f /secrets/secretkey ]]; then
@@ -46,12 +46,12 @@ data:
     fi
 
     # Register the runner
-    if ! sh /scripts/register-the-runner; then
+    if ! sh /configmaps/register-the-runner; then
       exit 1
     fi
 
     # Run pre-entrypoint-script
-    if ! bash /scripts/pre-entrypoint-script; then
+    if ! bash /configmaps/pre-entrypoint-script; then
       exit 1
     fi
 
@@ -72,7 +72,7 @@ data:
     {{- if .Values.sentryDsn }}
     sentry_dsn = "{{ .Values.sentryDsn }}"
     {{- end }}
-  
+
   {{ if .Values.runners.config }}
   config.template.toml: {{ toYaml .Values.runners.config | indent 2 }}
   {{ end }}
@@ -126,7 +126,7 @@ data:
         {{-   end }}
         {{- end }}
         {{- if .Values.runners.config }}
-        --template-config /scripts/config.template.toml \
+        --template-config /configmaps/config.template.toml \
         {{- end }}
         --non-interactive
 
@@ -155,3 +155,5 @@ data:
 
   pre-entrypoint-script: |
 {{ .Values.preEntrypointScript | default "" | indent 4 }}
+
+{{ if not (empty .Values.configMaps) }}{{ toYaml .Values.configMaps | indent 2 }}{{ end }}
