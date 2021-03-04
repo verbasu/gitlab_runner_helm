@@ -24,6 +24,9 @@ imagePullPolicy: IfNotPresent
 # imagePullSecrets:
 #   - name: "image-pull-secret"
 
+## How many runner pods to launch.
+# replicas: 1
+
 ## The GitLab Server URL (with protocol) that want to register the runner against
 ## ref: https://docs.gitlab.com/runner/commands/README.html#gitlab-runner-register
 ##
