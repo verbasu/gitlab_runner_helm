@@ -6,7 +6,7 @@
 ## ref: https://hub.docker.com/r/gitlab/gitlab-runner/tags/
 ##
 ## Note: If you change the image to the ubuntu release
-##       don't forget to change the securityContext; 
+##       don't forget to change the securityContext;
 ##       these images run on different user IDs.
 ##
 # image: gitlab/gitlab-runner:alpine-v11.6.0
@@ -21,7 +21,7 @@ imagePullPolicy: IfNotPresent
 ## Kubernetes supports specifying container image registry keys on a Pod.
 ## ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
 ##
-# imagePullSecrets: 
+# imagePullSecrets:
 #   - name: "image-pull-secret"
 
 ## The GitLab Server URL (with protocol) that want to register the runner against
@@ -49,11 +49,6 @@ imagePullPolicy: IfNotPresent
 ## ref: https://docs.gitlab.com/runner/commands/README.html#gitlab-runner-unregister
 ##
 # unregisterRunners: true
-
-## Specify the name of the scheduler which used to schedule runner pods.
-## Kubernetes supports multiple scheduler configurations.
-## ref: https://kubernetes.io/docs/reference/scheduling
-# schedulerName: "my-custom-scheduler"
 
 ## When stopping the runner, give it time to wait for its jobs to terminate.
 ##
@@ -385,6 +380,11 @@ runners:
   # env:
   #   NAME: VALUE
 
+
+## Specify the name of the scheduler which used to schedule runner pods.
+## Kubernetes supports multiple scheduler configurations.
+## ref: https://kubernetes.io/docs/reference/scheduling
+# schedulerName: "my-custom-scheduler"
 
 ## Configure securitycontext
 ## ref: http://kubernetes.io/docs/user-guide/security-context/
