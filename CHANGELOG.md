@@ -1,8 +1,8 @@
-## v0.27.0-rc1 (2021-03-08)
+## v0.27.0 (2021-03-21)
 
 ### New features
 
-- Update GitLab Runner version to 13.10.0-rc1
+- Update GitLab Runner version to 13.10.0
 - Allow setting deployment replicas !286
 - Add support for specify ConfigMaps for gitlab-runner deployment !285
 - Allow to mount arbitrary Kubernetes secrets !283
