@@ -74,7 +74,7 @@ data:
     {{- end }}
 
   {{ if .Values.runners.config }}
-  config.template.toml: {{ toYaml .Values.runners.config | indent 2 }}
+  config.template.toml: {{ tpl (toYaml .Values.runners.config) $ | indent 2 }}
   {{ end }}
 
   configure: |
