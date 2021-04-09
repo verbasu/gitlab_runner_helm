@@ -1,3 +1,21 @@
+## v0.28.0-rc1 (2021-04-09)
+
+### New features
+
+- Update GitLab Runner version to 13.11.0-rc1
+
+### Maintenance
+
+- Pass runners.config through the template engine !290 (Dmitriy @Nevoff89)
+- Add role support of individual verbs list for different resources !280 (Horatiu Eugen Vlad @hvlad)
+- Use runner namespace for role and role binding if it is specified !256 (Alex Sears @searsaw)
+- Add optional configuration values for pod security context `runAsUser` and `supplementalGroups` !242 (Horatiu Eugen Vlad @hvlad)
+
+### Documentation changes
+
+- docs: add notice that we run tpl on runner config !291
+- Add comment on imagePullPolicy !288
+
 ## v0.27.0 (2021-03-21)
 
 ### New features
