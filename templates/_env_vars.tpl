@@ -3,8 +3,10 @@
   value: {{ include "gitlab-runner.gitlabUrl" . }}
 - name: CLONE_URL
   value: {{ default "" .Values.runners.cloneUrl | quote }}
+{{- if .Values.runners.requestConcurrency }}
 - name: RUNNER_REQUEST_CONCURRENCY
   value: {{ default 1 .Values.runners.requestConcurrency | quote }}
+{{- end }}
 - name: RUNNER_EXECUTOR
   value: {{ default "kubernetes" .Values.runners.executor | quote }}
 - name: REGISTER_LOCKED
