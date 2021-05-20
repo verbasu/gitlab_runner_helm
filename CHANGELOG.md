@@ -1,8 +1,8 @@
-## v0.29.0-rc1 (2021-05-10)
+## v0.29.0 (2021-05-20)
 
 ### New features
 
-- Update GitLab Runner version to 13.12.0-rc1
+- Update GitLab Runner version to 13.12.0
 
 ## v0.28.0 (2021-04-20)
 
