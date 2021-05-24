@@ -411,6 +411,11 @@ runners:
   #   NAME: VALUE
 
 
+## Specify the name of the scheduler which used to schedule runner pods.
+## Kubernetes supports multiple scheduler configurations.
+## ref: https://kubernetes.io/docs/reference/scheduling
+# schedulerName: "my-custom-scheduler"
+
 ## Configure securitycontext
 ## ref: http://kubernetes.io/docs/user-guide/security-context/
 ##
