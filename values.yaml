@@ -526,6 +526,6 @@ secrets: []
 ## Additional config files to mount in the containers in `/configmaps`.
 ##
 ## Please note that a number of keys are reserved by the runner.
-## See https://gitlab.com/gitlab-org/charts/gitlab-runner/-/blob/master/templates/configmap.yaml
+## See https://gitlab.com/gitlab-org/charts/gitlab-runner/-/blob/main/templates/configmap.yaml
 ## for a current list.
 configMaps: {}
