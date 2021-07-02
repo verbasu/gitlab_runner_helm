@@ -13,11 +13,24 @@ GitLab instance is reachable at:
         gitlab/gitlab-runner
 {{- end -}}
 
-{{ if not .Values.runners.config }}
+{{- if not .Values.runners.config }}
 #############################################################################################
 ## WARNING: You don't seem to be using the GitLab Runner config template functionality.    ##
 ## Configuring the GitLab Runner through that template is recommended as other             ##
 ## configuration options will be deprecated in Helm Chart 1.0. Read more at                ##
 ## https://docs.gitlab.com/runner/install/kubernetes.html#using-configuration-template.    ##
 #############################################################################################
-{{ end}}
+{{- end }}
+
+{{- $runnerNamespace := regexFind "\\s*namespace\\s*=.+\\s*" (tpl .Values.runners.config $) | regexFind "=.+" | trimPrefix "=" | trim -}}
+{{- if regexMatch "\\s*namespace\\s*=" .Values.runners.config }}
+
+Runner namespace {{ $runnerNamespace }} was found in runners.config template.
+{{- if .Values.runners.namespace }}
+
+#############################################################################################
+## WARNING: You have set the namespace in runners.config and also set in deprecated        ##
+## runner.namespace element. The runners.config namespace will be ignored.                 ##
+#############################################################################################
+{{- end }}
+{{- end }}
