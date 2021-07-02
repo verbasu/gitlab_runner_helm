@@ -167,6 +167,7 @@ runners:
   config: |
     [[runners]]
       [runners.kubernetes]
+        namespace = "{{.Release.Namespace}}"
         image = "ubuntu:16.04"
 
   ## Which executor should be used
