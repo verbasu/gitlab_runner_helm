@@ -1,3 +1,13 @@
+## v0.31.0-rc1 (2021-07-08)
+
+### New features
+
+- Update GitLab Runner version to 14.1.0-rc1
+
+### Bug fixes
+
+- Only add environment variables if values set !295 (Matthew Warman @mcwarman)
+
 ## v0.30.0 (2021-06-19)
 
 ### New features
