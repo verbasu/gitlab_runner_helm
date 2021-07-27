@@ -9,6 +9,7 @@ metadata:
     heritage: "{{ .Release.Service }}"
 spec:
   replicas: {{ default 1 .Values.replicas }}
+  revisionHistoryLimit: {{ default 10 .Values.revisionHistoryLimit }}
   selector:
     matchLabels:
       app: {{ include "gitlab-runner.fullname" . }}

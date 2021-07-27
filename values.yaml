@@ -31,6 +31,9 @@ imagePullPolicy: IfNotPresent
 ## How many runner pods to launch.
 # replicas: 1
 
+## How many old ReplicaSets for this Deployment you want to retain
+# revisionHistoryLimit: 10
+
 ## The GitLab Server URL (with protocol) that want to register the runner against
 ## ref: https://docs.gitlab.com/runner/commands/README.html#gitlab-runner-register
 ##
