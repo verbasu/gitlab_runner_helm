@@ -1,3 +1,10 @@
+## v0.32.0-rc1 (2021-08-12)
+
+### New features
+
+- Update GitLab Runner version to 14.2.0-rc1
+- Add support for revisionHistoryLimit !299 (Romain Grenet @romain.grenet1)
+
 ## v0.31.0 (2021-07-20)
 
 ### New features
