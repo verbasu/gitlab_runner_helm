@@ -28,6 +28,9 @@ imagePullPolicy: IfNotPresent
 # imagePullSecrets:
 #   - name: "image-pull-secret"
 
+## Timeout, in seconds, for liveness and readiness probes of a runner pod.
+# probeTimeoutSeconds: 1
+
 ## How many runner pods to launch.
 # replicas: 1
 
