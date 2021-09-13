@@ -1,3 +1,13 @@
+## v0.33.0-rc1 (2021-09-13)
+
+### New features
+
+- Update GitLab Runner version to 14.3.0-rc1
+
+### Maintenance
+
+- Update container entrypoint to use `dumb-init` to avoid zombie processes !311 (Georg Lauterbach @georglauterbach)
+
 ## v0.32.0 (2021-08-22)
 
 ### New features
@@ -321,7 +331,7 @@
 - Add affinity, nodeSelector and tolerations for pod assignment !56
 - Ignore scripts directory when buildin helm chart !83
 - Bump used Runner version to 11.8.0-rc1 !87
-- Fix year in Changelog  - it's already 2019 !84
+- Fix year in Changelog - it's already 2019 !84
 
 ## v0.1.45 (2019-01-22)
 
@@ -333,4 +343,3 @@
 - Track app version in Chart.yaml !74
 - Fix the error caused by unset 'locked' value !79
 - Bump used Runner version to 11.7.0 !82
-
