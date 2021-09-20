@@ -52,32 +52,6 @@ spec:
         {{-   end}}
         {{- end}}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
-      initContainers:
-      - name: configure
-        command: ['sh', '/configmaps/configure']
-        image: {{ include "gitlab-runner.image" . }}
-        imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
-        securityContext:
-          allowPrivilegeEscalation: false
-        env:
-        {{ include "gitlab-runner.runner-env-vars" . | indent 8 }}
-        volumeMounts:
-        - name: runner-secrets
-          mountPath: /secrets
-          readOnly: false
-        - name: configmaps
-          mountPath: /configmaps
-          readOnly: true
-        - name: init-runner-secrets
-          mountPath: /init-secrets
-          readOnly: true
-        {{- if .Values.certsSecretName }}
-        - name: custom-certs
-          readOnly: true
-          mountPath: /home/gitlab-runner/.gitlab-runner/certs/
-        {{- end }}
-        resources:
-{{ toYaml .Values.resources | indent 10 }}
       serviceAccountName: {{ if .Values.rbac.create }}{{ include "gitlab-runner.fullname" . }}{{ else }}"{{ .Values.rbac.serviceAccountName }}"{{ end }}
       containers:
       - name: {{ include "gitlab-runner.fullname" . }}
@@ -115,7 +89,7 @@ spec:
           protocol: TCP
         {{- end }}
         volumeMounts:
-        - name: runner-secrets
+        - name: projected-secrets
           mountPath: /secrets
         - name: etc-gitlab-runner
           mountPath: /home/gitlab-runner/.gitlab-runner
@@ -135,7 +109,7 @@ spec:
       - name: etc-gitlab-runner
         emptyDir:
           medium: "Memory"
-      - name: init-runner-secrets
+      - name: projected-secrets
         projected:
           sources:
             {{- if .Values.runners.cache.cacheType }}

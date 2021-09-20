@@ -107,9 +107,6 @@ data:
   config.template.toml: {{ tpl (toYaml .Values.runners.config) $ | indent 2 }}
   {{ end }}
 
-  configure: |
-    set -e
-    cp /init-secrets/* /secrets
   register-the-runner: |
     #!/bin/bash
     MAX_REGISTER_ATTEMPTS=30
