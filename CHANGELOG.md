@@ -1,3 +1,15 @@
+## v0.35.0-rc1 (2021-11-10)
+
+### New features
+
+- Update GitLab Runner version to 14.5.0-rc1
+
+### Maintenance
+
+- Don't run pipelines only for MRs !318
+- Update changelog generator configuration !317
+- Adds configurable value probeTimeoutSeconds !306 (Kyle Wetzler @kwetzler1)
+
 ## v0.34.0-rc1 (2021-10-11)
 
 ### New features
