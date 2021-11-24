@@ -28,7 +28,7 @@ spec:
         checksum/secrets: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}
         {{- if .Values.metrics.enabled }}
         prometheus.io/scrape: 'true'
-        prometheus.io/port: {{ .Values.metrics.port }}
+        prometheus.io/port: {{ .Values.metrics.port | quote }}
         {{- end }}
         {{- range $key, $value := .Values.podAnnotations }}
         {{   $key }}: {{ $value | quote }}
