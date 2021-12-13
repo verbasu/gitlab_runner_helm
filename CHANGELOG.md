@@ -1,3 +1,9 @@
+## v0.35.3 (2021-12-13)
+
+### Maintenance
+
+- Fix prometheus annotation unquoted value !323
+
 ## v0.35.2 (2021-12-10)
 
 ### Security
