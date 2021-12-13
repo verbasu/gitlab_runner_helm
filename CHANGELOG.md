@@ -1,8 +1,26 @@
-## v0.35.0-rc1 (2021-11-10)
+## v0.35.3 (2021-12-13)
+
+### Maintenance
+
+- Fix prometheus annotation unquoted value !323
+
+## v0.35.2 (2021-12-10)
+
+### Security
+
+- Update GitLab Runner version to 14.5.2
+
+## v0.35.1 (2021-12-01)
+
+### Security
+
+- Update GitLab Runner version to 14.5.1
+
+## v0.35.0 (2021-11-21)
 
 ### New features
 
-- Update GitLab Runner version to 14.5.0-rc1
+- Update GitLab Runner version to 14.5.0
 
 ### Maintenance
 
