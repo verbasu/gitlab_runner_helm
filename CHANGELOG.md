@@ -1,3 +1,18 @@
+## v0.36.0 (2021-12-18)
+
+### New features
+
+- Update GitLab Runner version to 14.6.0
+
+### Bug fixes
+
+- Fix prometheus annotation unquoted value !323
+
+### GitLab Runner distribution
+
+- Fix the security release rule in .gitlab-ci.yml !324
+- Fail the stable release job on curl failures !322
+
 ## v0.35.3 (2021-12-13)
 
 ### Maintenance
