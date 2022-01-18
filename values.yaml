@@ -112,6 +112,21 @@ checkInterval: 30
 #preEntrypointScript: |
 #  echo "hello"
 
+## Specify whether the runner should start the session server.
+## Defaults to false
+## ref: 
+##
+## When sessionServer is enabled, the user can either provide a public publicIP 
+## or either rely on the external IP auto discovery
+## When a serviceAccountName is used with the automounting to the pod disable,
+## we recommend the usage of the publicIP
+sessionServer:
+  enabled: true
+  # timeout: 1800
+  # internalPort: 8093
+  # externalPort: 9000
+  # publicIP: ""
+
 ## For RBAC support:
 rbac:
   create: false
@@ -341,7 +356,7 @@ runners:
   # runUntagged: true
 
   ## Specify whether the runner should only run protected branches.
-  ## Defaults to False.
+  ## Defaults to false.
   ##
   ## ref: https://docs.gitlab.com/ee/ci/runners/#prevent-runners-from-revealing-sensitive-information
   ##
