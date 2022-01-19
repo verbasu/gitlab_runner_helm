@@ -1,3 +1,10 @@
+## v0.37.0 (2022-01-19)
+
+### New Features
+
+- Update GitLab Runner version to 14.7.0
+- Add support for interactive web terminal !320
+
 ## v0.36.0 (2021-12-18)
 
 ### New features
