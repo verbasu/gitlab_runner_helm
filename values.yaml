@@ -121,7 +121,7 @@ checkInterval: 30
 ## When a serviceAccountName is used with the automounting to the pod disable,
 ## we recommend the usage of the publicIP
 sessionServer:
-  enabled: true
+  enabled: false
   # timeout: 1800
   # internalPort: 8093
   # externalPort: 9000
