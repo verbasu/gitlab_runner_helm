@@ -1,3 +1,9 @@
+## v0.37.1 (2022-01-20)
+
+### Bug fixes
+
+- Set sessionServer to false by default !332
+
 ## v0.37.0 (2022-01-19)
 
 ### New Features
