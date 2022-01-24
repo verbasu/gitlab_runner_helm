@@ -1,3 +1,9 @@
+## v0.37.2 (2022-01-24)
+
+### Bug fixes
+
+- Fix appVersion to 14.7.0
+
 ## v0.37.1 (2022-01-20)
 
 ### Bug fixes
