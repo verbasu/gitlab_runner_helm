@@ -126,6 +126,8 @@ sessionServer:
   # internalPort: 8093
   # externalPort: 9000
   # publicIP: ""
+  # loadBalancerSourceRanges:
+  #   - 1.2.3.4/32
 
 ## For RBAC support:
 rbac:
