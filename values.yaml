@@ -339,7 +339,7 @@ runners:
 
   ## Specify the tags associated with the runner. Comma-separated list of tags.
   ##
-  ## ref: https://docs.gitlab.com/ce/ci/runners/#use-tags-to-limit-the-number-of-jobs-using-the-runner
+  ## ref: https://docs.gitlab.com/ee/ci/runners/configure_runners.html#use-tags-to-control-which-jobs-a-runner-can-run
   ##
   # tags: ""
 
@@ -351,14 +351,14 @@ runners:
   ## If not specified, Runner will default to true if no tags were specified. In other case it will
   ## default to false.
   ##
-  ## ref: https://docs.gitlab.com/ce/ci/runners/#runner-is-allowed-to-run-untagged-jobs
+  ## ref: https://docs.gitlab.com/ee/ci/runners/configure_runners.html#set-a-runner-to-run-untagged-jobs
   ##
   # runUntagged: true
 
   ## Specify whether the runner should only run protected branches.
   ## Defaults to false.
   ##
-  ## ref: https://docs.gitlab.com/ee/ci/runners/#prevent-runners-from-revealing-sensitive-information
+  ## ref: https://docs.gitlab.com/ee/ci/runners/configure_runners.html#prevent-runners-from-revealing-sensitive-information
   ##
   # protected: true
 
