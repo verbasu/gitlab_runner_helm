@@ -1,3 +1,11 @@
+## v0.38.0 (2022-02-21)
+
+### Maintenance
+
+- Fix urls with runners configuration information !314 (Dmitriy Stoyanov @DmitriyStoyanov)
+- k8s rbac: add more resources in comment. !307 (Chen Yufei @cyfdecyf)
+- Add dependency scanning to Runner Helm Chart project !331
+
 ## v0.37.2 (2022-01-24)
 
 ### Bug fixes
