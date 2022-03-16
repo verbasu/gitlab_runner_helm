@@ -180,7 +180,7 @@ rbac:
 ## ref: https://docs.gitlab.com/runner/monitoring/#configuration-of-the-metrics-http-server
 ##
 metrics:
-  enabled: true
+  enabled: false
 
   ## Define a name for the metrics port
   ##
