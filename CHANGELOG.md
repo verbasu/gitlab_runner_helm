@@ -1,3 +1,17 @@
+## v0.39.0 (2022-03-21)
+
+### New Features
+
+- Update GitLab Runner version to 14.9.0
+
+### Bug fixes
+
+- Disable metrics endpoint by default !337
+
+### Maintenance
+
+- Update labels according to latest taxonomy !338
+
 ## v0.38.1 (2022-03-02)
 
 ### New Features
