@@ -69,6 +69,42 @@ lint:
   script:
   - helm lint .
 
+integration test:
+  extends:
+  - .rules:default
+  variables:
+    DOCKER_HOST: "tcp://kubernetes:2375/"
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_DRIVER: overlay2
+    INTEGRATION_RUNNER_NAME: integration-test-$CI_COMMIT_SHORT_SHA
+    INTEGRATION_HELM_POD_RELEASE_LABEL: release=$INTEGRATION_RUNNER_NAME
+  stage: test
+  services:
+  - name: docker:19.03.12-dind
+    alias: kubernetes
+  image: docker:19.03.12-git
+  script:
+    # Initialize KIND cluster
+  - apk add --no-cache openssl curl bash
+  - curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.20.4/bin/linux/amd64/kubectl && chmod +x /usr/local/bin/kubectl
+  - curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64 && chmod +x /usr/local/bin/kind
+  - kind create cluster --config=$(pwd)/scripts/kind-config.yaml
+  - kind get kubeconfig|sed -e 's/0.0.0.0/kubernetes/g' > kubeconfig.yaml
+  - export KUBECONFIG=$(pwd)/kubeconfig.yaml
+  - kubectl version
+  - kubectl cluster-info
+  - bash -c "for _i in {0..60}; do kubectl -n default get serviceaccount default -o name > /dev/null 2>&1 && break; sleep 1; done"
+  - bash -c "for _i in {0..60}; do kubectl get nodes|grep -w Ready > /dev/null 2>&1 && break; sleep 1; done"
+  # Install helm
+  - curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+  # Run tests
+  - bash -x scripts/integration.sh
+  after_script:
+  - export KUBECONFIG=$(pwd)/kubeconfig.yaml
+  - bash -x scripts/integration_cleanup.sh
+  tags:
+  - gitlab-org-docker
+
 release development:
   extends:
   - .rules:release:development
