@@ -17,6 +17,10 @@ spec:
   {{- if .Values.sessionServer.publicIP }}
   loadBalancerIP: {{ .Values.sessionServer.publicIP }}
   {{- end }}
+  {{- if .Values.sessionServer.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+    {{- toYaml .Values.sessionServer.loadBalancerSourceRanges | nindent 4 }}
+  {{- end }}
   ports:
   - protocol: TCP
     port: {{ include "gitlab-runner.server-session-external-port" . }}
