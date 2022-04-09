@@ -139,6 +139,9 @@ data:
         {{- if and (hasKey .Values.runners "name") .Values.runners.name }}
         --name={{ .Values.runners.name | quote -}} \
         {{- end }}
+        {{- if and (hasKey .Values.runners "maximumTimeout") .Values.runners.maximumTimeout }}
+        --maximum-timeout={{ .Values.runners.maximumTimeout | quote -}} \
+        {{- end }}
         {{- range $key, $value := .Values.runners.env }}
         --env {{ $key | quote -}} = {{- $value | quote }} \
         {{- end }}
