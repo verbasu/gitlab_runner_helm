@@ -1,3 +1,16 @@
+## v0.40.0 (2022-04-20)
+
+### New features
+
+- Update GitLab Runner version to 14.10.0
+- Add the possibility to configure maximum timeout that will be set for jobs when using the runner !341 (Adrien Gooris @adrien.gooris)
+
+### Maintenance
+
+- Add a post-release CI job to trigger a deps pipeline in Charts repo !339
+- Add helm install integration test !326
+- Make loadBalancerSourceRanges of Session Server configurable !334 (Matthias Baur @m.baur)
+
 ## v0.39.0 (2022-03-21)
 
 ### New Features
