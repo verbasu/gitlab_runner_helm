@@ -57,6 +57,19 @@ imagePullPolicy: IfNotPresent
 ##
 # runnerToken: ""
 #
+
+## Unregister runner before termination
+##
+## Updating the runner's chart version or configuration will cause the runner container
+## to be terminated and created again. This may cause your Gitlab instance to reference
+## non-existant runners. Un-registering the runner before termination mitigates this issue.
+## ref: https://docs.gitlab.com/runner/commands/README.html#gitlab-runner-unregister
+##
+## Please set unregisterRunners to false if you set unregisterRunner to true as only
+## one preStop action is supported.
+##
+# unregisterRunner: true
+
 ## Unregister all runners before termination
 ##
 ## Updating the runner's chart version or configuration will cause the runner container
