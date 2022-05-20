@@ -80,9 +80,9 @@ integration test:
     INTEGRATION_HELM_POD_RELEASE_LABEL: release=$INTEGRATION_RUNNER_NAME
   stage: test
   services:
-  - name: docker:19.03.12-dind
+  - name: docker:20.10.16-dind
     alias: kubernetes
-  image: docker:19.03.12-git
+  image: docker:20.10.16-git
   script:
     # Initialize KIND cluster
   - apk add --no-cache openssl curl bash
