@@ -1,15 +1,15 @@
 ## GitLab Runner Image
 ##
-## By default it's using gitlab/gitlab-runner:alpine-v{VERSION}
+## By default it's using registry.gitlab.com/gitlab-org/gitlab-runner:alpine-v{VERSION}
 ## where {VERSION} is taken from Chart.yaml from appVersion field
 ##
-## ref: https://hub.docker.com/r/gitlab/gitlab-runner/tags/
+## ref: https://gitlab.com/gitlab-org/gitlab-runner/container_registry/29383?orderBy=NAME&sort=asc&search[]=alpine-v&search[]=
 ##
 ## Note: If you change the image to the ubuntu release
 ##       don't forget to change the securityContext;
 ##       these images run on different user IDs.
 ##
-# image: gitlab/gitlab-runner:alpine-v11.6.0
+# image: registry.gitlab.com/gitlab-org/gitlab-runner:alpine-v11.6.0
 
 ## Specify a imagePullPolicy for the main runner deployment
 ## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
@@ -511,7 +511,7 @@ runners:
     # memoryLimit: 256Mi
     # cpuRequests: 100m
     # memoryRequests: 128Mi
-    # image: "gitlab/gitlab-runner-helper:x86_64-${CI_RUNNER_REVISION}"
+    # image: "registry.gitlab.com/gitlab-org/gitlab-runner-helper:x86_64-${CI_RUNNER_REVISION}"
 
   ## Helper container security context configuration
   ## Refer to https://docs.gitlab.com/runner/executors/kubernetes.html#using-security-context
