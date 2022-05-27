@@ -100,6 +100,9 @@ spec:
           readOnly: true
           mountPath: /home/gitlab-runner/.gitlab-runner/certs/
         {{- end }}
+        {{- if .Values.volumeMounts }}
+{{ toYaml .Values.volumeMounts | indent 8 }}
+        {{- end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
       volumes:
@@ -151,6 +154,9 @@ spec:
       - name: configmaps
         configMap:
           name: {{ include "gitlab-runner.fullname" . }}
+      {{- if .Values.volumes }}
+{{ toYaml .Values.volumes | indent 6 }}
+      {{- end }}
     {{- if .Values.imagePullSecrets }}
       imagePullSecrets:
 {{ toYaml .Values.imagePullSecrets | indent 8 }}
