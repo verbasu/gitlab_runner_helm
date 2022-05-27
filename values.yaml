@@ -127,9 +127,9 @@ checkInterval: 30
 
 ## Specify whether the runner should start the session server.
 ## Defaults to false
-## ref: 
+## ref:
 ##
-## When sessionServer is enabled, the user can either provide a public publicIP 
+## When sessionServer is enabled, the user can either provide a public publicIP
 ## or either rely on the external IP auto discovery
 ## When a serviceAccountName is used with the automounting to the pod disable,
 ## we recommend the usage of the publicIP
@@ -685,3 +685,18 @@ secrets: []
 ## See https://gitlab.com/gitlab-org/charts/gitlab-runner/-/blob/main/templates/configmap.yaml
 ## for a current list.
 configMaps: {}
+
+## Additional volumeMounts to add to the runner container
+##
+volumeMounts: []
+  # Example:
+  # - name: my-volume
+  #   mountPath: /mount/path
+
+## Additional volumes to add to the runner deployment
+##
+volumes: []
+  # Example:
+  # - name: my-volume
+  #   persistentVolumeClaim:
+  #     claimName: my-pvc
