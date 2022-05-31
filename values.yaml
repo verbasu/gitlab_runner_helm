@@ -135,6 +135,7 @@ checkInterval: 30
 ## we recommend the usage of the publicIP
 sessionServer:
   enabled: false
+  # annotations: {}
   # timeout: 1800
   # internalPort: 8093
   # externalPort: 9000
