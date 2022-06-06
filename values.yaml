@@ -3,13 +3,18 @@
 ## By default it's using registry.gitlab.com/gitlab-org/gitlab-runner:alpine-v{VERSION}
 ## where {VERSION} is taken from Chart.yaml from appVersion field
 ##
+## DEPRECATED: Setting `image: registry.gitlab.com/gitlab-org/gitlab-runner:alpine-v11.6.0` is deprecated
+##
 ## ref: https://gitlab.com/gitlab-org/gitlab-runner/container_registry/29383?orderBy=NAME&sort=asc&search[]=alpine-v&search[]=
 ##
 ## Note: If you change the image to the ubuntu release
 ##       don't forget to change the securityContext;
 ##       these images run on different user IDs.
 ##
-# image: registry.gitlab.com/gitlab-org/gitlab-runner:alpine-v11.6.0
+image:
+  registry: registry.gitlab.com
+  image: gitlab-org/gitlab-runner
+  # tag: alpine-v11.6.0
 
 ## Specify a imagePullPolicy for the main runner deployment
 ## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
