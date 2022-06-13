@@ -666,6 +666,10 @@ podLabels: {}
   #     metricName: gitlab_runner_jobs
   #     targetAverageValue: 400m
 
+## Configure priorityClassName for manager pod. See k8s docs for more info on how pod priority works:
+##  https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
+priorityClassName: ""
+
 ## Secrets to be additionally mounted to the containers.
 ## All secrets are mounted through init-runner-secrets volume
 ## and placed as readonly at /init-secrets in the init container
