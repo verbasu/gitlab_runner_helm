@@ -578,10 +578,21 @@ runners:
 ## ref: https://kubernetes.io/docs/reference/scheduling
 # schedulerName: "my-custom-scheduler"
 
-## Configure securitycontext
+## Configure securitycontext for the main container
 ## ref: http://kubernetes.io/docs/user-guide/security-context/
 ##
 securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  runAsNonRoot: true
+  privileged: false
+  capabilities:
+    drop: ["ALL"]
+
+## Configure securitycontext valid for the whole pod
+## ref: http://kubernetes.io/docs/user-guide/security-context/
+##
+podSecurityContext:
   runAsUser: 100
   # runAsGroup: 65533
   fsGroup: 65533
