@@ -38,20 +38,7 @@ spec:
       {{- if .Values.schedulerName }}
       schedulerName: {{ .Values.schedulerName }}
       {{- end }}
-      securityContext:
-        runAsUser: {{ .Values.securityContext.runAsUser }}
-        {{- if .Values.securityContext.runAsGroup }}
-        runAsGroup: {{ .Values.securityContext.runAsGroup }}
-        {{- end}}
-        {{- if .Values.securityContext.fsGroup }}
-        fsGroup: {{ .Values.securityContext.fsGroup }}
-        {{- end}}
-        {{- if .Values.securityContext.supplementalGroups }}
-        supplementalGroups:
-        {{-   range .Values.securityContext.supplementalGroups }}
-          - {{ . }}
-        {{-   end}}
-        {{- end}}
+      securityContext: {{ toYaml .Values.podSecurityContext | nindent 8 }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       {{- if .Values.priorityClassName }}
       priorityClassName: {{ .Values.priorityClassName | quote }}
@@ -61,8 +48,7 @@ spec:
       - name: {{ include "gitlab-runner.fullname" . }}
         image: {{ include "gitlab-runner.image" . }}
         imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
-        securityContext:
-          allowPrivilegeEscalation: false
+        securityContext: {{ toYaml .Values.securityContext | nindent 10 }}
         {{- include "gitlab-runner.unregisterRunner" . | nindent 8 }}
         {{- include "gitlab-runner.unregisterRunners" . | nindent 8 }}
         command: ["/usr/bin/dumb-init", "--", "/bin/bash", "/configmaps/entrypoint"]
