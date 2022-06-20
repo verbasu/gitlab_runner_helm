@@ -1,3 +1,23 @@
+## v0.42.0 (2022-06-20)
+
+### New features
+
+- Update GitLab Runner version to 15.1.0
+- Add priority classname !350
+- Update namespaces to be consistent across manifests !343 (blacktide @blacktide)
+- Add freely configurable securityContext to deployment !354
+- Add possibility to overwrite default image registry !351 (Patrik Votoček @vrtak-cz)
+- Make session server service annotations configurable !336 (Matthias Baur @m.baur)
+
+### Maintenance
+
+- Add volume and volumeMount support to runner deployment !348
+- ci: Update Helm from 3.4.1 to 3.7.2 !347 (Takuya Noguchi @tnir)
+- Update Docker to 20.10 on integration test !346 (Takuya Noguchi @tnir)
+- Update default registry to GitLab Runner registry !345
+- Update casing of GitLab in values YAML file !344 (Ben Bodenmiller @bbodenmiller)
+- Remove unneeded rbac role !335 (Matthias Baur @m.baur)
+
 ## v0.41.0 (2022-05-19)
 
 ### New features
