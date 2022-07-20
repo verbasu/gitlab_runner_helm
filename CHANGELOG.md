@@ -1,3 +1,13 @@
+## v0.43.0 (2022-07-20)
+
+### New features
+
+- Update GitLab Runner version to 15.2.0
+
+### Documentation changes
+
+- Fix some dead links !356 (Ben Bodenmiller @bbodenmiller)
+
 ## v0.42.0 (2022-06-20)
 
 ### New features
