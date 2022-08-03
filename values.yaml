@@ -162,6 +162,11 @@ rbac:
   ## - apiGroups: default "" (indicates the core API group) if missing or empty.
   ## - resources: default "*" if missing or empty.
   ## - verbs: default "*" if missing or empty.
+  ##
+  ## Read more about the recommended rules on the following link
+  ##
+  ## ref: https://docs.gitlab.com/runner/executors/kubernetes.html#configuring-executor-service-account
+  ##
   rules: []
   # - resources: ["configmaps", "pods", "pods/attach", "secrets", "services"]
   #   verbs: ["get", "list", "watch", "create", "patch", "update", "delete"]
