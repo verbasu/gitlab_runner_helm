@@ -1,3 +1,18 @@
+## v0.44.0 (2022-08-19)
+
+### New features
+
+- Update GitLab Runner version to 15.3.0
+- Add secrets update permission to RBAC example provided !349 (Tim Hobbs @hobti01)
+
+### Maintenance
+
+- Fix the pipeline being blocked by development release !357
+
+### Documentation changes
+
+- Docs: Update values.yaml comments to reference kubernetes service accounts docs !310
+
 ## v0.43.0 (2022-07-20)
 
 ### New features
