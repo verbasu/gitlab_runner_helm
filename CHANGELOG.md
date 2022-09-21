@@ -1,3 +1,19 @@
+## v0.45.0 (2022-09-21)
+
+### New features
+
+- Update GitLab Runner version to 15.4.0
+- Add secrets update permission to RBAC example provided !349 (Tim Hobbs @hobti01)
+
+### Bug fixes
+
+- Revert "Merge branch 'feature/unregister-one-runner' into 'main'" !362
+
+### Maintenance
+
+- Fix the pipeline being blocked by development release !357
+- Docs: Update values.yaml comments to reference kubernetes service accounts docs !310
+
 ## v0.44.0 (2022-08-19)
 
 ### New features
