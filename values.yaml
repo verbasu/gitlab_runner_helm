@@ -215,6 +215,10 @@ metrics:
     ##
     ## labels: {}
 
+    ## Provide annotations to the service monitor ressource
+    ##
+    ## annotations: {}
+
     ## Define a scrape interval (otherwise prometheus default is used)
     ##
     ## ref: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config
