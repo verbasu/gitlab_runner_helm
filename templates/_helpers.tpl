@@ -75,18 +75,6 @@ Define the image, using .Chart.AppVersion and GitLab Runner image as a default v
 {{- end -}}
 
 {{/*
-Define the ubi usage based on the image name, used to determine the correct init command
-*/}}
-{{- define "gitlab-runner.isUbi" }}
-{{- $image := include "gitlab-runner.image" . -}}
-{{- if contains "ubi" $image -}}
-{{- true }}
-{{- else -}}
-{{- false -}}
-{{- end -}}
-{{- end -}}
-
-{{/*
 Define the server session timeout, using 1800 as a default value
 */}}
 {{- define "gitlab-runner.server-session-timeout" }}

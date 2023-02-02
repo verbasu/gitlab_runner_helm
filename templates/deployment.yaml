@@ -52,7 +52,7 @@ spec:
         imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
         securityContext: {{ toYaml .Values.securityContext | nindent 10 }}
         {{- include "gitlab-runner.unregisterRunners" . | nindent 8 }}
-        {{- if "gitlab-runner.isUbi" }}
+        {{- if contains "ubi"  (include "gitlab-runner.image" .) }}
         command: ["/usr/local/bin/tini", "--", "/bin/bash", "/configmaps/entrypoint"]
         {{- else }}
         command: ["/usr/bin/dumb-init", "--", "/bin/bash", "/configmaps/entrypoint"]
