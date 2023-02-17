@@ -8,6 +8,7 @@ keywords:
 - ci
 - deploy
 sources:
+- https://gitlab.com/gitlab-org/charts/gitlab-runner
 - https://gitlab.com/gitlab-org/gitlab-runner
 - https://docs.gitlab.com/runner/
 icon: https://gitlab.com/uploads/-/system/project/avatar/250833/runner_logo.png
