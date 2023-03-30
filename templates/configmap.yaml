@@ -105,7 +105,7 @@ data:
     {{- end }}
 
   {{ if .Values.runners.config }}
-  config.template.toml: {{ tpl (toYaml .Values.runners.config) $ | indent 2 }}
+  config.template.toml: {{ tpl .Values.runners.config $ | toYaml | indent 2 }}
   {{ end }}
 
   register-the-runner: |
