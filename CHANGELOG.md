@@ -11,6 +11,7 @@
 
 ### Maintenance
 
+- Fix failure in integration tests !390
 - Add merge release config to be executed after stable branches are merged into the main branch !387
 
 ## v0.48.0 (2022-12-17)
