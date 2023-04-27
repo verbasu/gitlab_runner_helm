@@ -3,8 +3,6 @@
 ## By default it's using registry.gitlab.com/gitlab-org/gitlab-runner:alpine-v{VERSION}
 ## where {VERSION} is taken from Chart.yaml from appVersion field
 ##
-## DEPRECATED: Setting `image: registry.gitlab.com/gitlab-org/gitlab-runner:alpine-v11.6.0` is deprecated
-##
 ## ref: https://gitlab.com/gitlab-org/gitlab-runner/container_registry/29383?orderBy=NAME&sort=asc&search[]=alpine-v&search[]=
 ##
 ## Note: If you change the image to the ubuntu release
@@ -145,11 +143,6 @@ sessionServer:
 ## For RBAC support:
 rbac:
   create: false
-
-  ## Define specific rbac permissions.
-  ## DEPRECATED: see .Values.rbac.rules
-  # resources: ["pods", "pods/exec", "secrets"]
-  # verbs: ["get", "list", "watch", "create", "patch", "delete"]
 
   ## Define list of rules to be added to the rbac role permissions.
   ## Each rule supports the keys:
@@ -330,29 +323,6 @@ runners:
   ##
   # executor: kubernetes
 
-  ## Default container image to use for builds when none is specified
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # image: ubuntu:16.04
-
-  ## Specify one or more imagePullSecrets
-  ##
-  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # imagePullSecrets: []
-
-  ## Specify the image pull policy: never, if-not-present, always. The cluster default will be used if not set.
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # imagePullPolicy: ""
-
-  ## Defines number of concurrent requests for new job from GitLab
-  ## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-runners-section
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # requestConcurrency: 1
-
   ## Specify whether the runner should be locked to a specific project: true, false. Defaults to true.
   ##
   # locked: true
@@ -386,14 +356,6 @@ runners:
   ##
   # protected: true
 
-  ## Run all containers with the privileged flag enabled
-  ## This will allow the docker:dind image to run if you need to run Docker
-  ## commands. Please read the docs before turning this on:
-  ## ref: https://docs.gitlab.com/runner/executors/kubernetes.html#using-dockerdind
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # privileged: false
-
   ## The name of the secret containing runner-token and runner-registration-token
   # secret: gitlab-runner
 
@@ -401,17 +363,6 @@ runners:
   ##
   ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
   # namespace:
-
-  ## The amount of time, in seconds, that needs to pass before the runner will
-  ## timeout attempting to connect to the container it has just created.
-  ## ref: https://docs.gitlab.com/runner/executors/kubernetes.html
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # pollTimeout: 180
-
-  ## Set maximum build log size in kilobytes, by default set to 4096 (4MB)
-  ## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-runners-section
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # outputLimit: 4096
 
   ## Distributed runners caching
   ## ref: https://docs.gitlab.com/runner/configuration/autoscale.html#distributed-runners-caching
@@ -484,93 +435,6 @@ runners:
     # secretName: google-application-credentials
     ## Use this line for access using Azure with azure-account-name and azure-account-key
     # secretName: azureaccess
-
-
-  ## Build Container specific configuration
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  builds: {}
-    # cpuLimit: 200m
-    # cpuLimitOverwriteMaxAllowed: 400m
-    # memoryLimit: 256Mi
-    # memoryLimitOverwriteMaxAllowed: 512Mi
-    # cpuRequests: 100m
-    # cpuRequestsOverwriteMaxAllowed: 200m
-    # memoryRequests: 128Mi
-    # memoryRequestsOverwriteMaxAllowed: 256Mi
-
-  ## Service Container specific configuration
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  services: {}
-    # cpuLimit: 200m
-    # memoryLimit: 256Mi
-    # cpuRequests: 100m
-    # memoryRequests: 128Mi
-
-  ## Helper Container specific configuration
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  helpers: {}
-    # cpuLimit: 200m
-    # memoryLimit: 256Mi
-    # cpuRequests: 100m
-    # memoryRequests: 128Mi
-    # image: "registry.gitlab.com/gitlab-org/gitlab-runner/gitlab-runner-helper:x86_64-${CI_RUNNER_REVISION}"
-
-  ## Helper container security context configuration
-  ## Refer to https://docs.gitlab.com/runner/executors/kubernetes.html#using-security-context
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # pod_security_context:
-  #   run_as_non_root: true
-  #   run_as_user: 100
-  #   run_as_group: 100
-  #   fs_group: 65533
-  #   supplemental_groups: [101, 102]
-
-  ## Service Account to be used for runners
-  ##
-  # serviceAccountName:
-
-  ## If Gitlab is not reachable through $CI_SERVER_URL
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # cloneUrl:
-
-  ## Specify node labels for CI job pods assignment
-  ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # nodeSelector: {}
-
-  ## Specify node tolerations for CI job pods assignment
-  ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # nodeTolerations: {}
-
-  ## Specify pod labels for CI job pods
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # podLabels: {}
-
-  ## Specify annotations for job pods, useful for annotations such as iam.amazonaws.com/role
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # podAnnotations: {}
-
-  ## Configure environment variables that will be injected to the pods that are created while
-  ## the build is running. These variables are passed as parameters, i.e. `--env "NAME=VALUE"`,
-  ## to `gitlab-runner register` command.
-  ##
-  ## Note that `envVars` (see below) are only present in the runner pod, not the pods that are
-  ## created for each build.
-  ##
-  ## ref: https://docs.gitlab.com/runner/commands/#gitlab-runner-register
-  ##
-  ## DEPRECATED: See https://docs.gitlab.com/runner/install/kubernetes.html#additional-configuration
-  # env:
-  #   NAME: VALUE
-
 
 ## Specify the name of the scheduler which used to schedule runner pods.
 ## Kubernetes supports multiple scheduler configurations.

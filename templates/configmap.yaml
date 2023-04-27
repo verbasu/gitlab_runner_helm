@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "gitlab-runner.fullname" . }}
-  namespace: {{ default .Release.Namespace .Values.runners.namespace | quote }}
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     app: {{ include "gitlab-runner.fullname" . }}
     chart: {{ include "gitlab-runner.chart" . }}
@@ -115,46 +115,17 @@ data:
     for i in $(seq 1 "${MAX_REGISTER_ATTEMPTS}"); do
       echo "Registration attempt ${i} of ${MAX_REGISTER_ATTEMPTS}"
       /entrypoint register \
-        {{- range .Values.runners.imagePullSecrets }}
-        --kubernetes-image-pull-secrets {{ . | quote }} \
-        {{- end }}
-        {{- range $key, $val := .Values.runners.nodeSelector }}
-        --kubernetes-node-selector {{ $key | quote }}:{{ $val | quote }} \
-        {{- end }}
-        {{- range .Values.runners.nodeTolerations }}
-        {{-   $keyValue := .key }}
-        {{-   if eq (.operator | default "Equal") "Equal"  }}
-        {{-     $keyValue = print $keyValue "=" (.value | default "" ) }}
-        {{-   end }}
-        --kubernetes-node-tolerations {{ $keyValue }}:{{ .effect | quote }} \
-        {{- end }}
-        {{- range $key, $value := .Values.runners.podLabels }}
-        --kubernetes-pod-labels {{ $key | quote }}:{{ $value | quote }} \
-        {{- end }}
-        {{- range $key, $val := .Values.runners.podAnnotations }}
-        --kubernetes-pod-annotations {{ $key | quote }}:{{ $val | quote }} \
-        {{- end }}
         {{- if and (hasKey .Values.runners "name") .Values.runners.name }}
         --name={{ .Values.runners.name | quote -}} \
         {{- end }}
         {{- if and (hasKey .Values.runners "maximumTimeout") .Values.runners.maximumTimeout }}
         --maximum-timeout={{ .Values.runners.maximumTimeout | quote -}} \
         {{- end }}
-        {{- range $key, $value := .Values.runners.env }}
-        --env {{ $key | quote -}} = {{- $value | quote }} \
-        {{- end }}
         {{- if and (hasKey .Values.runners "runUntagged") .Values.runners.runUntagged }}
         --run-untagged=true \
         {{- end }}
         {{- if and (hasKey .Values.runners "protected") .Values.runners.protected }}
         --access-level="ref_protected" \
-        {{- end }}
-        {{- if .Values.runners.pod_security_context }}
-        {{-   if .Values.runners.pod_security_context.supplemental_groups }}
-        {{-     range $gid := .Values.runners.pod_security_context.supplemental_groups }}
-        --kubernetes-pod-security-context-supplemental-groups {{ $gid | quote }} \
-        {{-     end }}
-        {{-   end }}
         {{- end }}
         {{- if .Values.runners.config }}
         --template-config /configmaps/config.template.toml \

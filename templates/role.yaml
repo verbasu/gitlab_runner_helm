@@ -9,7 +9,7 @@ metadata:
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
   {{ if not .Values.rbac.clusterWideAccess -}}
-  namespace: {{ default .Release.Namespace .Values.runners.namespace | quote }}
+  namespace: {{ .Release.Namespace | quote }}
   {{- end }}
 rules:
 {{- if .Values.rbac.podSecurityPolicy.enabled }}
@@ -19,11 +19,6 @@ rules:
   resourceNames:
 {{ toYaml .Values.rbac.podSecurityPolicy.resourceNames | indent 2 }}
 {{- end }}
-{{- if or (empty .Values.rbac.rules) (or .Values.rbac.resources .Values.rbac.verbs) }}
-- apiGroups: [""]
-  resources: {{ (default (list "*") .Values.rbac.resources | toJson) }}
-  verbs: {{ (default (list "*") .Values.rbac.verbs | toJson) }}
-{{- end -}}
 {{ range .Values.rbac.rules }}
 - apiGroups: {{ (default (list "") .apiGroups) | toJson }}
   resources: {{ (default (list "*") .resources) | toJson }}
