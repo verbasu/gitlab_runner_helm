@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "gitlab-runner.fullname" . }}
-  namespace: {{ default .Release.Namespace .Values.runners.namespace | quote }}
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     app: {{ include "gitlab-runner.fullname" . }}
     chart: {{ include "gitlab-runner.chart" . }}
@@ -110,25 +110,6 @@ spec:
       - name: projected-secrets
         projected:
           sources:
-            {{- if .Values.runners.cache.cacheType }}
-              # .Values.runners.cache.cacheType is deprecated: https://gitlab.com/gitlab-org/charts/gitlab-runner/-/issues/224
-            {{- end }}
-
-            {{- if and .Values.runners.cache .Values.runners.cache.cacheType }}
-            {{-   if and (include "gitlab-runner.cache.secret" .) (eq .Values.runners.cache.cacheType "s3") }}
-            - secret:
-                name: {{ include "gitlab-runner.cache.secret" . }}
-            {{-   end }}
-            {{-   if eq .Values.runners.cache.cacheType "gcs"}}
-            - secret:
-                # Outdated default secret "s3access" kept for compatibilty with older installs using it.
-                # Will be removed in next major release: https://gitlab.com/gitlab-org/charts/gitlab-runner/merge_requests/177
-                name: {{ default "s3access" (include "gitlab-runner.cache.secret" .) }}
-            {{-   end }}
-            {{- else if include "gitlab-runner.cache.secret" . }}
-            - secret:
-                name: {{ include "gitlab-runner.cache.secret" . }}
-            {{- end }}
             - secret:
                 name: {{ include "gitlab-runner.secret" . }}
                 items:
