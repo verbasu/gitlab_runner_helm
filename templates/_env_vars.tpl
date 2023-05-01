@@ -12,7 +12,7 @@
 - name: RUNNER_TAG_LIST
   value: {{ default "" .Values.runners.tags | quote }}
 {{- if eq (default "kubernetes" .Values.runners.executor) "kubernetes" }}
-{{- if or .Values.runners.namespace (not (regexMatch "\\s*namespace\\s*=" .Values.runners.config)) }}
+{{- if not (regexMatch "\\s*namespace\\s*=" .Values.runners.config) }}
 - name: KUBERNETES_NAMESPACE
   value: {{ .Release.Namespace | quote }}
 {{- end }}
