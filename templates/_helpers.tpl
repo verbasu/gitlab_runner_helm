@@ -86,3 +86,16 @@ lifecycle:
       command: ["/entrypoint", "unregister", "--all-runners"]
 {{- end -}}
 {{- end -}}
+
+{{/*
+Define if the registration token provided (if any)
+is an authentication token or not
+*/}}
+{{- define "gitlab-runner.isAuthToken" -}}
+{{- $isAuthToken := false -}}
+{{- $hasRegistrationToken := hasKey .Values "runnerRegistrationToken" -}}
+{{- if $hasRegistrationToken -}}
+{{-   $isAuthToken = (hasPrefix "glrt-" .Values.runnerRegistrationToken) -}}
+{{- end -}}
+{{- $isAuthToken -}}
+{{- end -}}
