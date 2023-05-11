@@ -121,10 +121,10 @@ data:
         {{- if and (hasKey .Values.runners "maximumTimeout") .Values.runners.maximumTimeout }}
         --maximum-timeout={{ .Values.runners.maximumTimeout | quote -}} \
         {{- end }}
-        {{- if and (hasKey .Values.runners "runUntagged") .Values.runners.runUntagged }}
+        {{- if and (eq (include "gitlab-runner.isAuthToken" . ) "false") (hasKey .Values.runners "runUntagged") .Values.runners.runUntagged }}
         --run-untagged=true \
         {{- end }}
-        {{- if and (hasKey .Values.runners "protected") .Values.runners.protected }}
+        {{- if and (eq (include "gitlab-runner.isAuthToken" . ) "false") (hasKey .Values.runners "protected") .Values.runners.protected }}
         --access-level="ref_protected" \
         {{- end }}
         {{- if .Values.runners.config }}
