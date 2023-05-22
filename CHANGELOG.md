@@ -1,3 +1,16 @@
+## v0.53.0 (2023-05-22)
+
+### New features
+
+- Update GitLab Runner version to v16.0.0
+
+### Maintenance
+
+- Adapt the Helm Chart to support the next Token Architecture !398
+- Remove namespace and cache deprecated fields from the Helm Chart project !397
+- Remove all deprecated fields that can be resolved with template merging !393
+- Fix failure in integration tests !390
+
 ## v0.52.0 (2023-04-22)
 
 ### New features
