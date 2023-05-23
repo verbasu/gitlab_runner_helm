@@ -19,6 +19,11 @@ rules:
   resourceNames:
 {{ toYaml .Values.rbac.podSecurityPolicy.resourceNames | indent 2 }}
 {{- end }}
+{{- if empty .Values.rbac.rules }}
+- apiGroups: [""]
+  resources: {{ (default (list "*") .Values.rbac.resources | toJson) }}
+  verbs: {{ (default (list "*") .Values.rbac.verbs | toJson) }}
+{{- end -}}
 {{ range .Values.rbac.rules }}
 - apiGroups: {{ (default (list "") .apiGroups) | toJson }}
   resources: {{ (default (list "*") .resources) | toJson }}
