@@ -148,7 +148,7 @@ data:
   check-live: |
     #!/bin/bash
     set -o pipefail
-    gitlab-runner verify -n 'hostname' 2>&1 | grep "alive"
+    gitlab-runner verify -n 'kubernetes' 2>&1 | grep "alive"
 
 
   {{- if and (eq (default 1.0 .Values.replicas) 1.0) .Values.sessionServer .Values.sessionServer.enabled }}
