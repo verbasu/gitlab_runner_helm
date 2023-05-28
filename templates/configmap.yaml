@@ -147,13 +147,9 @@ data:
 
   check-live: |
     #!/bin/bash
-    if /usr/bin/pgrep -f .*register-the-runner; then
-      exit 0
-    elif /usr/bin/pgrep gitlab.*runner; then
-      exit 0
-    else
-      exit 1
-    fi
+    set -o pipefail
+    gitlab-runner verify -n 'hostname' 2>&1 | grep "alive"
+
 
   {{- if and (eq (default 1.0 .Values.replicas) 1.0) .Values.sessionServer .Values.sessionServer.enabled }}
   set-session-server-address: |
