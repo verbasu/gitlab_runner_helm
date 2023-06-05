@@ -38,6 +38,15 @@ Define the name of the secret containing the tokens
 {{- end -}}
 
 {{/*
+Define the name of the s3 cache secret
+*/}}
+{{- define "gitlab-runner.cache.secret" -}}
+{{- if hasKey .Values.runners.cache "secretName" -}}
+{{- .Values.runners.cache.secretName | quote -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Template for outputing the gitlabUrl
 */}}
 {{- define "gitlab-runner.gitlabUrl" -}}
