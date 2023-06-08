@@ -1,3 +1,19 @@
+## v0.53.2 (2023-06-08)
+
+### New features
+
+- Update GitLab Runner version to v16.0.2
+
+### Bug fixes
+
+- Revert cache settings through Kubernetes secret in values yaml !406
+- Take in account registration token from secret !405
+- Support empty rules defined in the values.yaml !402
+
+### Maintenance
+
+- Remove reference to rbac.resources and rbac.verbs !403
+
 ## v0.52.1 (2023-06-02)
 
 ### New features
