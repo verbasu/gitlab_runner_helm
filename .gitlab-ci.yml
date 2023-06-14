@@ -69,6 +69,13 @@ lint:
   script:
   - helm lint .
 
+unit_tests:
+  extends:
+    - .rules:default
+  script:
+    - helm plugin install https://github.com/helm-unittest/helm-unittest.git --version 0.3.3
+    - helm unittest .
+
 integration test:
   extends:
   - .rules:default
