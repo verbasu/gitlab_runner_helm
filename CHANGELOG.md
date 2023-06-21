@@ -1,3 +1,22 @@
+## v0.54.0 (2023-06-21)
+
+### New features
+
+- Update GitLab Runner version to v16.1.0
+- Allow to run multiple replicas with runner tokens !411
+- Mark values incompatible with token arch as deprecated !410
+
+### Bug fixes
+
+- Revert cache settings through Kubernetes secret in values yaml !406
+- Take in account registration token from secret !405
+- Support empty rules defined in the values.yaml !402
+
+### Maintenance
+
+- Add helm unittest and one basic example !407
+- Remove reference to rbac.resources and rbac.verbs !403
+
 ## v0.53.2 (2023-06-08)
 
 ### New features
