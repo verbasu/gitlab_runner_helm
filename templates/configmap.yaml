@@ -13,9 +13,9 @@ data:
     #!/bin/bash
     set -e
 
-    mkdir -p /home/gitlab-runner/.gitlab-runner/
-
-    cp /configmaps/config.toml /home/gitlab-runner/.gitlab-runner/
+    export CONFIG_PATH_FOR_INIT="{{ ternary "/.gitlab-runner/" "/home/gitlab-runner/.gitlab-runner/" (and (hasKey .Values.securityContext "runAsNonRoot") (not .Values.securityContext.runAsNonRoot)) }}"
+    mkdir -p ${CONFIG_PATH_FOR_INIT}
+    cp /configmaps/config.toml ${CONFIG_PATH_FOR_INIT}
 
     {{- if and (eq (default 1.0 .Values.replicas) 1.0) .Values.sessionServer .Values.sessionServer.enabled }}
     quit() {
@@ -194,11 +194,11 @@ data:
         sleep 5
       else
         has_address=true
-        sed -i -e "s/SESSION_SERVER_IP/${ADDRESS}/g" /home/gitlab-runner/.gitlab-runner/config.toml
+        sed -i -e "s/SESSION_SERVER_IP/${ADDRESS}/g" ${CONFIG_PATH_FOR_INIT}/config.toml
       fi
     done
     {{- else }}
-    sed -i -e "s/SESSION_SERVER_IP/{{ .Values.sessionServer.publicIP }}/g" /home/gitlab-runner/.gitlab-runner/config.toml
+    sed -i -e "s/SESSION_SERVER_IP/{{ .Values.sessionServer.publicIP }}/g" ${CONFIG_PATH_FOR_INIT}/config.toml
     {{- end}}
   {{ end }}
 
