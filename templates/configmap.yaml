@@ -130,6 +130,8 @@ data:
         {{- end }}
         {{- if .Values.runners.config }}
         --template-config /configmaps/config.template.toml \
+        {{ else if .Values.runners.configPath}}
+        --template-config {{ .Values.runners.configPath }} \
         {{- end }}
         --non-interactive
 
