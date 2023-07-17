@@ -316,8 +316,9 @@ runners:
         namespace = "{{.Release.Namespace}}"
         image = "ubuntu:16.04"
 
-  ## Custom path for runner configuration file
-  ## Active if runners.config is empty
+  ## Absolute path for an existing runner configuration file
+  ## Can be used alongside "volumes" and "volumeMounts" to use an external config file
+  ## Active if runners.config is empty or null
   configPath: ""
 
   ## Which executor should be used
