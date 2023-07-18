@@ -110,6 +110,10 @@ spec:
       - name: projected-secrets
         projected:
           sources:
+            {{- if include "gitlab-runner.cache.secret" . }}
+            - secret:
+                name: {{ include "gitlab-runner.cache.secret" . }}
+            {{- end }}
             - secret:
                 name: {{ include "gitlab-runner.secret" . }}
                 items:

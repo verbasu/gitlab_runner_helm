@@ -21,8 +21,8 @@ rules:
 {{- end }}
 {{- if empty .Values.rbac.rules }}
 - apiGroups: [""]
-  resources: {{ (default (list "*") .Values.rbac.resources | toJson) }}
-  verbs: {{ (default (list "*") .Values.rbac.verbs | toJson) }}
+  resources: {{ (list "*") | toJson }}
+  verbs: {{ (list "*") | toJson }}
 {{- end -}}
 {{ range .Values.rbac.rules }}
 - apiGroups: {{ (default (list "") .apiGroups) | toJson }}
