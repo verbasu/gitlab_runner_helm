@@ -1,3 +1,15 @@
+## v0.55.0 (2023-07-23)
+
+### New features
+
+- Update GitLab Runner version to v16.2.0
+- Hpa: Support newer apiVersions !391 (Cameron Boulton @iAnomaly)
+
+### Bug fixes
+
+- Set the config toml according to the runAsNonRoot property !414
+- Remove extra condition on cache secret !409
+
 ## v0.54.0 (2023-06-21)
 
 ### New features
