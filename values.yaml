@@ -279,7 +279,7 @@ service:
   ##
   # loadBalancerSourceRanges: []
 
-  ## Specify the service type e.g., ClusterIP, NodePort, Loadbalancer or ExternalName
+  ## Specify the service type e.g., ClusterIP, NodePort, LoadBalancer or ExternalName
   ##
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
   ##
@@ -314,7 +314,7 @@ runners:
     [[runners]]
       [runners.kubernetes]
         namespace = "{{.Release.Namespace}}"
-        image = "ubuntu:16.04"
+        image = "ubuntu:22.04"
 
   ## Which executor should be used
   ##
