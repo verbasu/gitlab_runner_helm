@@ -206,7 +206,7 @@ metrics:
   serviceMonitor:
     enabled: false
 
-    ## Provide additional labels to the service monitor ressource
+    ## Provide additional labels to the service monitor resource
     ##
     ## labels: {}
 
