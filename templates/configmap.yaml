@@ -71,7 +71,10 @@ data:
     fi
 
     # Start the runner
-    exec /entrypoint run --user=gitlab-runner \
+    exec /entrypoint run \
+    {{- if and .Values.runners.executor (ne "shell" ((.Values.runners.executor) | toString)) }}
+      --user=gitlab-runner \
+    {{- end }}
       --working-directory=/home/gitlab-runner
 
   config.toml: |
