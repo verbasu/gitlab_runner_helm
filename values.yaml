@@ -166,7 +166,10 @@ rbac:
   ##
   # serviceAccountName: default
 
-  ## Specify annotations for Service Accounts, useful for annotations such as eks.amazonaws.com/role-arn
+  ## Specify annotations for Service Accounts, useful for annotations such as eks.amazonaws.com/role-arn.
+  ## Values may refer other values as the _tpl_ function is implicitly applied. Mind the quotes when using this, e.g.
+  ## serviceAccountAnnotations:
+  ##   eks.amazonaws.com/role-arn: "arn:aws:iam::{{ .Values.global.accountId }}:role/{{ .Values.global.iamRoleName }}"
   ##
   ## ref: https://docs.aws.amazon.com/eks/latest/userguide/specify-service-account-role.html
   ##
