@@ -1,3 +1,19 @@
+## v0.56.0 (2023-08-21)
+
+### New features
+
+- Update GitLab Runner version to v16.3.0
+- Template values for rbac.serviceAccountAnnotations !408 (Thorsten Huhn @thuhn)
+
+### Bug fixes
+
+- fix: remove gitlab-runner user flag for shell executor !401 (Zadkiel @zadkiel)
+
+### Maintenance
+
+- Update integration tests to use latest kubernetes version !421 (Amit Tewari @tewaria)
+- Fix typo : Update values.yaml and change to update default ubuntu release !418 (David Auffray @Davidffry)
+
 ## v0.55.0 (2023-07-23)
 
 ### New features
