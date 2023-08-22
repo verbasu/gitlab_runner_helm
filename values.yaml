@@ -152,7 +152,7 @@ rbac:
   ## ref: https://docs.gitlab.com/runner/executors/kubernetes.html#configuring-executor-service-account
   ##
   rules: []
-  # - resources: ["configmaps", "pods", "pods/attach", "secrets", "services"]
+  # - resources: ["configmaps", "pods", "pods/attach", "pods/exec", "secrets", "services"]
   #   verbs: ["get", "list", "watch", "create", "patch", "update", "delete"]
   # - apiGroups: [""]
   #   resources: ["pods/exec"]
