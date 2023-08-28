@@ -84,8 +84,10 @@ spec:
           protocol: TCP
         {{- end }}
         volumeMounts:
+        {{- if not .Values.externalSecrets }}
         - name: projected-secrets
           mountPath: /secrets
+        {{- end }}
         - name: etc-gitlab-runner
           mountPath: /home/gitlab-runner/.gitlab-runner
         - name: configmaps
@@ -107,6 +109,7 @@ spec:
       - name: etc-gitlab-runner
         emptyDir:
           medium: "Memory"
+      {{- if or (include "gitlab-runner.cache.secret" .) (not .Values.externalSecrets) (.Values.secrets) }}
       - name: projected-secrets
         projected:
           sources:
@@ -114,6 +117,7 @@ spec:
             - secret:
                 name: {{ include "gitlab-runner.cache.secret" . }}
             {{- end }}
+            {{- if not .Values.externalSecrets }}
             - secret:
                 name: {{ include "gitlab-runner.secret" . }}
                 items:
@@ -121,11 +125,12 @@ spec:
                     path: runner-registration-token
                   - key: runner-token
                     path: runner-token
-
+            {{- end }}
             {{- range .Values.secrets }}
             - secret:
 {{ toYaml . | indent 16 }}
             {{- end }}
+      {{- end }}
       {{- if .Values.certsSecretName }}
       - name: custom-certs
         secret:
