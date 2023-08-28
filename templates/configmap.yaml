@@ -52,6 +52,7 @@ data:
       export CACHE_AZURE_ACCOUNT_KEY=$(cat /secrets/azure-account-key)
     fi
 
+    {{- if not .Values.externalSecrets }}
     if [[ -f /secrets/runner-registration-token ]]; then
       export REGISTRATION_TOKEN=$(cat /secrets/runner-registration-token)
     fi
@@ -59,6 +60,7 @@ data:
     if [[ -f /secrets/runner-token ]]; then
       export CI_SERVER_TOKEN=$(cat /secrets/runner-token)
     fi
+    {{- end }}
 
     # Register the runner
     if ! sh /configmaps/register-the-runner; then
