@@ -84,7 +84,7 @@ spec:
           protocol: TCP
         {{- end }}
         volumeMounts:
-        {{- if not .Values.externalSecrets }}
+        {{- if or (include "gitlab-runner.cache.secret" .) (not .Values.externalSecrets) .Values.secrets }}
         - name: projected-secrets
           mountPath: /secrets
         {{- end }}
@@ -109,7 +109,7 @@ spec:
       - name: etc-gitlab-runner
         emptyDir:
           medium: "Memory"
-      {{- if or (include "gitlab-runner.cache.secret" .) (not .Values.externalSecrets) (.Values.secrets) }}
+      {{- if or (include "gitlab-runner.cache.secret" .) (not .Values.externalSecrets) .Values.secrets }}
       - name: projected-secrets
         projected:
           sources:
