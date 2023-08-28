@@ -16,6 +16,9 @@ spec:
   selector:
     matchLabels:
       app: {{ include "gitlab-runner.fullname" . }}
+  {{- with .Values.strategy }}
+  strategy: {{ toYaml . | nindent 4 }}
+  {{- end }}
   template:
     metadata:
       labels:
