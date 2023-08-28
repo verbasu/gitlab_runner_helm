@@ -64,6 +64,13 @@ imagePullPolicy: IfNotPresent
 # runnerToken: ""
 #
 
+## When using an external secret controller, you may desire not setting the above values.
+## In such cases, set externalSecrets to true to avoid creating unnecessary `kind: Secret`
+## resources, and related pod volumes and container volume mounts.
+##
+# externalSecrets: false
+#
+
 ## Unregister all runners before termination
 ##
 ## Updating the runner's chart version or configuration will cause the runner container
