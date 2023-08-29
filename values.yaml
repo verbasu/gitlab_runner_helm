@@ -498,6 +498,18 @@ hostAliases: []
   #   - "foo.remote"
   #   - "bar.remote"
 
+## Annotations to be added to deployment
+##
+deploymentAnnotations: {}
+  # Example:
+  # downscaler/uptime: <my_uptime_period>
+
+## Labels to be added to deployment
+##
+deploymentLabels: {}
+  # Example:
+  # owner.team: <my_cool_team>
+
 ## Annotations to be added to manager pod
 ##
 podAnnotations: {}
