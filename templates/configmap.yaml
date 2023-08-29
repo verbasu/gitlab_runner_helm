@@ -112,8 +112,10 @@ data:
     if [ ! -z "$REGISTRATION_TOKEN" ] && [ "${REGISTRATION_TOKEN#glrt-}" != "$REGISTRATION_TOKEN" ]; then
       RUN_UNTAGGED=""
       ACCESS_LEVEL=""
+      {{- if eq (include "gitlab-runner.isAuthToken" . ) "false" }}
       unset REGISTER_LOCKED
       unset RUNNER_TAG_LIST
+      {{- end }}
     fi
 
     for i in $(seq 1 "${MAX_REGISTER_ATTEMPTS}"); do
@@ -127,8 +129,6 @@ data:
         {{- end }}
         {{- if eq (include "gitlab-runner.isAuthToken" . ) "false" }}
         ${RUN_UNTAGGED} \
-        {{- end }}
-        {{- if eq (include "gitlab-runner.isAuthToken" . ) "false" }}
         ${ACCESS_LEVEL} \
         {{- end }}
         {{- if .Values.runners.config }}
