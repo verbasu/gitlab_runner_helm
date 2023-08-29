@@ -28,7 +28,9 @@ spec:
         {{- end }}
       annotations:
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- if or .Values.runnerRegistrationToken .Values.runnerToken -}}
         checksum/secrets: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}
+        {{- end }}
         {{- if .Values.metrics.enabled }}
         prometheus.io/scrape: 'true'
         prometheus.io/port: {{ .Values.metrics.port | quote }}
