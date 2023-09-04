@@ -319,6 +319,11 @@ runners:
         namespace = "{{.Release.Namespace}}"
         image = "ubuntu:22.04"
 
+  ## Absolute path for an existing runner configuration file
+  ## Can be used alongside "volumes" and "volumeMounts" to use an external config file
+  ## Active if runners.config is empty or null
+  configPath: ""
+
   ## Which executor should be used
   ##
   # executor: kubernetes
