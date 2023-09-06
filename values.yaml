@@ -547,6 +547,11 @@ secrets: []
   #     - key: key_one
   #       path: path_one
 
+## Boolean to turn off the automountServiceAccountToken in the deployment
+## ref: https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume
+##
+# automountServiceAccountToken: false
+
 ## Additional config files to mount in the containers in `/configmaps`.
 ##
 ## Please note that a number of keys are reserved by the runner.
