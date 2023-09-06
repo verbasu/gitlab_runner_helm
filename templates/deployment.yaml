@@ -37,6 +37,9 @@ spec:
         {{   $key }}: {{ $value | quote }}
         {{- end }}
     spec:
+      {{- if hasKey .Values "automountServiceAccountToken" }}
+      automountServiceAccountToken: {{ .Values.automountServiceAccountToken }}
+      {{- end }}
       {{- if .Values.schedulerName }}
       schedulerName: {{ .Values.schedulerName }}
       {{- end }}
