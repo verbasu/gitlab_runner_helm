@@ -97,7 +97,7 @@ integration test:
   before_script:
     - >
       if [[ -z "$REGISTRATION_TOKEN" ]]; then
-        echo "The REGISTRATION_TOKEN variable must be set for the project" && exit 1
+        echo "\e[0;31mThe REGISTRATION_TOKEN variable must be set for the (fork) project" && exit 1
       else
         echo "The REGISTRATION_TOKEN variable found and is not empty"
       fi
