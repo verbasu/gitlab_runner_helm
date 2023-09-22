@@ -1,7 +1,7 @@
 apiVersion: v1
 name: gitlab-runner
-version: 0.57.0-beta
-appVersion: bleeding
+version: 0.53.3
+appVersion: 16.0.3
 description: GitLab Runner
 keywords:
 - git
