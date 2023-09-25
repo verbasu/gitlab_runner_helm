@@ -1,49 +1,20 @@
-## v0.56.0 (2023-08-21)
+## v0.55.1 (2023-09-21)
 
 ### New features
 
-- Update GitLab Runner version to v16.3.0
-- Template values for rbac.serviceAccountAnnotations !408 (Thorsten Huhn @thuhn)
-
-### Bug fixes
-
-- fix: remove gitlab-runner user flag for shell executor !401 (Zadkiel @zadkiel)
-
-### Maintenance
-
-- Update integration tests to use latest kubernetes version !421 (Amit Tewari @tewaria)
-- Fix typo : Update values.yaml and change to update default ubuntu release !418 (David Auffray @Davidffry)
+- Update GitLab Runner version to v16.2.1
 
 ## v0.55.0 (2023-07-23)
 
 ### New features
 
-- Update GitLab Runner version to v16.2.0
-- Hpa: Support newer apiVersions !391 (Cameron Boulton @iAnomaly)
-
-### Bug fixes
-
-- Set the config toml according to the runAsNonRoot property !414
-- Remove extra condition on cache secret !409
+- Update GitLab Runner version to v16.1.1
 
 ## v0.54.0 (2023-06-21)
 
 ### New features
 
-- Update GitLab Runner version to v16.1.0
-- Allow to run multiple replicas with runner tokens !411
-- Mark values incompatible with token arch as deprecated !410
-
-### Bug fixes
-
-- Revert cache settings through Kubernetes secret in values yaml !406
-- Take in account registration token from secret !405
-- Support empty rules defined in the values.yaml !402
-
-### Maintenance
-
-- Add helm unittest and one basic example !407
-- Remove reference to rbac.resources and rbac.verbs !403
+- Update GitLab Runner version to v16.0.3
 
 ## v0.53.2 (2023-06-08)
 
