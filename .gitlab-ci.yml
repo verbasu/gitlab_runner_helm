@@ -94,6 +94,13 @@ integration test:
   - name: docker:20.10.16-dind
     alias: kubernetes
   image: docker:20.10.16-git
+  before_script:
+    - >
+      if [[ -z "$REGISTRATION_TOKEN" ]]; then
+        echo "\e[0;31mThe REGISTRATION_TOKEN variable must be set for the (fork) project" && exit 1
+      else
+        echo "The REGISTRATION_TOKEN variable found and is not empty"
+      fi
   script:
     # Initialize KIND cluster
   - apk add --no-cache openssl curl bash curl-dev
@@ -111,6 +118,8 @@ integration test:
   # Run tests
   - bash -x scripts/integration.sh
   after_script:
+  - >
+    [ ! -f $(pwd)/kubeconfig.yaml ] && exit 0
   - export KUBECONFIG=$(pwd)/kubeconfig.yaml
   - bash -x scripts/integration_cleanup.sh
   tags:

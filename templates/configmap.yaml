@@ -85,7 +85,7 @@ data:
     log_format = {{ .Values.logFormat | quote }}
     {{- end }}
     {{- if .Values.metrics.enabled }}
-    listen_address = ':9252'
+    listen_address = ":{{ .Values.metrics.port }}"
     {{- end }}
     {{- if .Values.sentryDsn }}
     sentry_dsn = "{{ .Values.sentryDsn }}"
@@ -133,6 +133,8 @@ data:
         {{- end }}
         {{- if .Values.runners.config }}
         --template-config /configmaps/config.template.toml \
+        {{- else if .Values.runners.configPath }}
+        --template-config {{ .Values.runners.configPath }} \
         {{- end }}
         --non-interactive
 
