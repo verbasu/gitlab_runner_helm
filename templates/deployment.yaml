@@ -131,7 +131,7 @@ spec:
             - secret:
                 name: {{ include "gitlab-runner.cache.secret" . }}
             {{- end }}
-            {{- if  or .Values.runnerRegistrationToken .Values.runnerToken }}
+            {{- if  or .Values.runnerRegistrationToken .Values.runnerToken .Values.runners.secret }}
             - secret:
                 name: {{ include "gitlab-runner.secret" . }}
                 items:
