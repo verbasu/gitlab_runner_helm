@@ -123,7 +123,7 @@ spec:
       - name: etc-gitlab-runner
         emptyDir:
           medium: "Memory"
-      {{- if or (include "gitlab-runner.cache.secret" .) .Values.runnerRegistrationToken .Values.runnerToken .Values.secrets }}
+      {{- if or (include "gitlab-runner.cache.secret" .) .Values.runnerRegistrationToken .Values.runnerToken .Values.secrets .Values.runners.secret }}
       - name: projected-secrets
         projected:
           sources:
