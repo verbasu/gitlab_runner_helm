@@ -98,7 +98,7 @@ spec:
           protocol: TCP
         {{- end }}
         volumeMounts:
-        {{- if or (include "gitlab-runner.cache.secret" .) .Values.runnerRegistrationToken .Values.runnerToken .Values.secrets }}
+        {{- if or (include "gitlab-runner.cache.secret" .) .Values.runnerRegistrationToken .Values.runnerToken .Values.secrets .Values.runners.secret }}
         - name: projected-secrets
           mountPath: /secrets
         {{- end }}
