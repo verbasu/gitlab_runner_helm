@@ -35,7 +35,7 @@ spec:
         {{- end }}
       annotations:
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
-        {{- if or .Values.runnerRegistrationToken .Values.runnerToken }}
+        {{- if or .Values.runnerRegistrationToken .Values.runnerToken .Values.runners.secret }}
         checksum/secrets: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}
         {{- end }}
         {{- if .Values.metrics.enabled }}
