@@ -149,7 +149,7 @@ rbac:
   ##
   ## Read more about the recommended rules on the following link
   ##
-  ## ref: https://docs.gitlab.com/runner/executors/kubernetes.html#configuring-executor-service-account
+  ## ref: https://docs.gitlab.com/runner/executors/kubernetes.html#configure-runner-api-permissions
   ##
   rules: []
   # - resources: ["configmaps", "events", "pods", "pods/attach", "pods/exec", "secrets", "services"]
@@ -171,7 +171,7 @@ rbac:
   ## serviceAccountAnnotations:
   ##   eks.amazonaws.com/role-arn: "arn:aws:iam::{{ .Values.global.accountId }}:role/{{ .Values.global.iamRoleName }}"
   ##
-  ## ref: https://docs.aws.amazon.com/eks/latest/userguide/specify-service-account-role.html
+  ## ref: https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html 
   ##
   # serviceAccountAnnotations: {}
 
@@ -229,7 +229,7 @@ metrics:
 
     ## Supply a tls configuration for the service monitor
     ##
-    ## ref: https://github.com/helm/charts/blob/master/stable/prometheus-operator/crds/crd-servicemonitor.yaml
+    ## ref: https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/charts/crds/crds/crd-servicemonitors.yaml 
     ##
     # tlsConfig: {}
 
@@ -430,7 +430,7 @@ runners:
 # schedulerName: "my-custom-scheduler"
 
 ## Configure securitycontext for the main container
-## ref: http://kubernetes.io/docs/user-guide/security-context/
+## ref: https://kubernetes.io/docs/concepts/security/pod-security-standards/ 
 ##
 securityContext:
   allowPrivilegeEscalation: false
@@ -441,7 +441,7 @@ securityContext:
     drop: ["ALL"]
 
 ## Configure securitycontext valid for the whole pod
-## ref: http://kubernetes.io/docs/user-guide/security-context/
+## ref: https://kubernetes.io/docs/concepts/security/pod-security-standards/ 
 ##
 podSecurityContext:
   runAsUser: 100
@@ -454,7 +454,7 @@ podSecurityContext:
   # fsGroup: 999
 
 ## Configure resource requests and limits
-## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+## ref: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 ##
 resources: {}
   # limits:
@@ -470,7 +470,7 @@ resources: {}
 affinity: {}
 
 ## Node labels for pod assignment
-## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
 ##
 nodeSelector: {}
   # Example: The gitlab runner manager should not run on spot instances so you can assign
