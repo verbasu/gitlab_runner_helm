@@ -1,27 +1,8 @@
-## v0.57.0 (2023-09-25)
+## v0.55.2 (2023-10-06)
 
 ### New features
 
-- Update GitLab Runner version to v16.4.0
-- Add labels and annotations to deployment !430 (Nicolas Gourdon @ngourdon)
-- Add ServiceMonitor annotations !373 (Mathieu Parent @sathieu)
-- Add ability to use custom template config path !416 (Samuel Bagattin @samuelbagattin)
-
-### Bug fixes
-
-- Allow pod security context to be unset !425 (Thomas Spear @tspearconquest)
-- Fix metrics port selection in configmap !424 (Thomas Spear @tspearconquest)
-- Add pods/exec as something gitlab needs if RBAC is enabled. Since we... !369 (Josh Knarr @tibers)
-
-### Maintenance
-
-- Check if token is set before running the integration test !433
-- Resource typo fix !419
-- Add events to rbac example !431 (Rémi Verchère @rverchere)
-
-### Other changes
-
-- Allow user to turn off automountServiceAccountToken feature !428 (Thomas Spear @tspearconquest)
+- Update GitLab Runner version to v16.2.2
 
 ## v0.55.1 (2023-09-21)
 
