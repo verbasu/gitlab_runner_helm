@@ -1,10 +1,16 @@
-## v0.55.2 (2023-10-06)
+## v0.56.2 (2023-10-06)
 
 ### New features
 
-- Update GitLab Runner version to v16.2.2
+- Update GitLab Runner version to v16.3.2
 
-## v0.55.1 (2023-09-21)
+## v0.56.1 (2023-09-18)
+
+### New features
+
+- Update GitLab Runner version to v16.3.1
+
+## v0.56.0 (2023-08-21)
 
 ### New features
 
