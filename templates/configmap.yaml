@@ -147,9 +147,16 @@ data:
 
   check-live: |
     #!/bin/bash
-    set -o pipefail
-    gitlab-runner verify -n $(awk -F'"' '/name = ".*"/ { print $2 }' "${HOME%/root}/.gitlab-runner/config.toml") -u $(awk -F'"' '/url = ".*"/ { print $2 }' /.gitlab-runner/config.toml) 2>&1 | grep "alive"
+    set -eou pipefail
 
+    if ! /usr/bin/pgrep -f ".*register-the-runner"  > /dev/null && ! /usr/bin/pgrep -f "gitlab.*runner"  > /dev/null ; then
+      exit 1
+    fi
+
+    name=$(awk -F'"' '/name = ".*"/ { print $2 }' "${HOME%/root}/.gitlab-runner/config.toml")
+    url=$(awk -F'"' '/url = ".*"/ { print $2 }' "${HOME%/root}/.gitlab-runner/config.toml")
+
+    gitlab-runner verify -n $name -u $url 2>&1 | grep "alive"
 
   {{- if and (eq (default 1.0 .Values.replicas) 1.0) .Values.sessionServer .Values.sessionServer.enabled }}
   set-session-server-address: |
