@@ -93,6 +93,11 @@ terminationGracePeriodSeconds: 3600
 ##
 concurrent: 10
 
+## Number of seconds until the forceful shutdown operation times out and exits the process.
+## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section
+##
+shutdown_timeout: 0
+
 ## Defines in seconds how often to check GitLab for a new builds
 ## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section
 ##
