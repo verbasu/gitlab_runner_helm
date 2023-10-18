@@ -465,9 +465,11 @@ resources: {}
   # limits:
   #   memory: 256Mi
   #   cpu: 200m
+  #   ephemeral-storage: 512Mi
   # requests:
   #   memory: 128Mi
   #   cpu: 100m
+  #   ephemeral-storage: 256Mi
 
 ## Affinity for pod assignment
 ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
