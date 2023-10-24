@@ -1,3 +1,9 @@
+## v0.58.1 (2023-10-24)
+
+### Bug fixes
+
+- Update liveness probe to support authentication token !446
+
 ## v0.58.0 (2023-10-20)
 
 ### New features
