@@ -160,10 +160,10 @@ data:
       exit 1
     fi
 
-    name=$(awk -F'"' '/name = ".*"/ { print $2 }' "${HOME%/root}/.gitlab-runner/config.toml")
-    url=$(awk -F'"' '/url = ".*"/ { print $2 }' "${HOME%/root}/.gitlab-runner/config.toml")
+    name=$(awk -F'"' '/^  name = ".*"/ { print $2 }' "${HOME%/root}/.gitlab-runner/config.toml")
+    url=$(awk -F'"' '/^  url = ".*"/ { print $2 }' "${HOME%/root}/.gitlab-runner/config.toml")
 
-    gitlab-runner verify -n $name -u $url 2>&1 | grep "alive"
+    gitlab-runner verify -n "$name" -u "$url" 2>&1 | grep -E "is alive|is valid"
 
   {{- if and (eq (default 1.0 .Values.replicas) 1.0) .Values.sessionServer .Values.sessionServer.enabled }}
   set-session-server-address: |

@@ -80,14 +80,13 @@ unit_tests:
     - helm plugin install https://github.com/helm-unittest/helm-unittest.git --version ${HELM_UNITTEST_PLUGIN_VERSION}
     - helm unittest .
 
-integration test:
+.integration_test:
   extends:
   - .rules:default
   variables:
     DOCKER_HOST: "tcp://kubernetes:2375/"
     DOCKER_TLS_CERTDIR: ""
     DOCKER_DRIVER: overlay2
-    INTEGRATION_RUNNER_NAME: integration-test-$CI_COMMIT_SHORT_SHA
     INTEGRATION_HELM_POD_RELEASE_LABEL: release=$INTEGRATION_RUNNER_NAME
   stage: test
   services:
@@ -95,15 +94,10 @@ integration test:
     alias: kubernetes
   image: docker:20.10.16-git
   before_script:
-    - >
-      if [[ -z "$REGISTRATION_TOKEN" ]]; then
-        echo "\e[0;31mThe REGISTRATION_TOKEN variable must be set for the (fork) project" && exit 1
-      else
-        echo "The REGISTRATION_TOKEN variable found and is not empty"
-      fi
+  - apk add --no-cache openssl curl bash curl-dev
+  - bash scripts/check_token.sh "${TOKEN_TYPE}" "${TOKEN}"
   script:
     # Initialize KIND cluster
-  - apk add --no-cache openssl curl bash curl-dev
   - curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl && chmod +x /usr/local/bin/kubectl
   - curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/${KIND_VERSION}/kind-linux-amd64 && chmod +x /usr/local/bin/kind
   - kind create cluster --config=$(pwd)/scripts/kind-config.yaml
@@ -116,7 +110,7 @@ integration test:
   # Install helm latest version instead of pre-installed one in registry.gitlab.com/gitlab-org/gitlab-build-images image
   - curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
   # Run tests
-  - bash -x scripts/integration.sh
+  - bash -x scripts/integration.sh "${TOKEN_TYPE}" "${TOKEN}" "${VALUE_YAML_FILE}"
   after_script:
   - >
     [ ! -f $(pwd)/kubeconfig.yaml ] && exit 0
@@ -124,6 +118,35 @@ integration test:
   - bash -x scripts/integration_cleanup.sh
   tags:
   - gitlab-org-docker
+
+# Registration token is deprecated and will be removed in GitLab 18.0
+# This integration test also will be removed in GitLab 18.0
+integration test registration token:
+  extends:
+  - .integration_test
+  variables:
+    INTEGRATION_RUNNER_NAME: integration-test-$CI_COMMIT_SHORT_SHA-registration-token
+    TOKEN_TYPE: "registration"
+    TOKEN: $REGISTRATION_TOKEN
+    VALUE_YAML_FILE: "./values.yaml"
+
+integration test authentication token:
+  extends:
+  - .integration_test
+  variables:
+    INTEGRATION_RUNNER_NAME: integration-test-$CI_COMMIT_SHORT_SHA-authentication-token
+    TOKEN_TYPE: "authentication"
+    TOKEN: $AUTHENTICATION_TOKEN
+    VALUE_YAML_FILE: "./values.yaml"
+
+integration test mount empty dir:
+  extends:
+  - .integration_test
+  variables:
+    INTEGRATION_RUNNER_NAME: "integration-test-$CI_COMMIT_SHORT_SHA-empty-dir"
+    TOKEN_TYPE: "authentication"
+    TOKEN: $AUTHENTICATION_TOKEN
+    VALUE_YAML_FILE: "./scripts/empty-dir.yaml"
 
 release development:
   extends:
