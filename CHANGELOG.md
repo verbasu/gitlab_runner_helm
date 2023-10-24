@@ -1,9 +1,5 @@
 ## v0.58.1 (2023-10-24)
 
-### New features
-
-- Update GitLab Runner version to v16.5.0
-
 ### Bug fixes
 
 - Update liveness probe to support authentication token !446
