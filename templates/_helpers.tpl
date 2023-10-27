@@ -59,8 +59,9 @@ Define the image, using .Chart.AppVersion and GitLab Runner image as a default v
 {{- define "gitlab-runner.image" }}
 {{- $appVersion := ternary "bleeding" (print "v" .Chart.AppVersion) (eq .Chart.AppVersion "bleeding") -}}
 {{- $appVersionImageTag := printf "alpine-%s" $appVersion -}}
+{{- $imageRegistry := ternary "" (print .Values.image.registry "/") (eq .Values.image.registry "") -}}
 {{- $imageTag := default $appVersionImageTag .Values.image.tag -}}
-{{- printf "%s/%s:%s" .Values.image.registry .Values.image.image $imageTag }}
+{{- printf "%s%s:%s" $imageRegistry .Values.image.image $imageTag }}
 {{- end -}}
 
 {{/*
