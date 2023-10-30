@@ -1,4 +1,48 @@
-## v0.55.1 (2023-09-21)
+## v0.58.1 (2023-10-24)
+
+### Bug fixes
+
+- Update liveness probe to support authentication token !446
+
+## v0.58.0 (2023-10-20)
+
+### New features
+
+- Update GitLab Runner version to v16.5.0
+- Add shutdown_timeout flag for global section config !435 (Maxim Tacu @mtacu)
+
+### Bug fixes
+
+- Add missing rbac when debugging services !442 (Ismael Posada Trobo @iposadat)
+- Adjust the runner image to match the configured podSecurityContext !434 (Harald Dunkel @hdunkel)
+- Support for external secrets added via values.yaml envVars value; avoid setting volumes and volume mounts for nonexistent secrets !426 (Thomas Spear @tspearconquest)
+- Make livenessProbe actually probe for a working runner !404 (fiskhest @fiskhest)
+- helm: fix runners.config template rendering !386 (Viktor Oreshkin @stek29)
+
+### Maintenance
+
+- Add ephemeral-storage example in resources.requests and resources.limits !443
+- Update broken and outdated links in Helm chart values.yaml !438 (Kolja Lucht @k0jak)
+
+## v0.57.1 (2023-10-06)
+
+### New features
+
+- Update GitLab Runner version to v16.3.3
+
+## v0.56.2 (2023-10-06)
+
+### New features
+
+- Update GitLab Runner version to v16.3.2
+
+## v0.56.1 (2023-09-18)
+
+### New features
+
+- Update GitLab Runner version to v16.3.1
+
+## v0.56.0 (2023-08-21)
 
 ### New features
 
