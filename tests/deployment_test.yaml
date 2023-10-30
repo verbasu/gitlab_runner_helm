@@ -7,6 +7,7 @@ tests:
   - it: renders runner registration token secret
     set:
       image.tag: latest
+      runnerRegistrationToken: "MY_REGISTRATION_TOKEN"
     template: deployment.yaml
     asserts:
       - isKind:

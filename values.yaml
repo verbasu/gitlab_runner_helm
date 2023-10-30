@@ -37,7 +37,7 @@ imagePullPolicy: IfNotPresent
 #   - name: "image-pull-secret"
 
 ## Timeout, in seconds, for liveness and readiness probes of a runner pod.
-# probeTimeoutSeconds: 1
+# probeTimeoutSeconds: 3
 
 ## How many runner pods to launch.
 ##
@@ -92,6 +92,11 @@ terminationGracePeriodSeconds: 3600
 ## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section
 ##
 concurrent: 10
+
+## Number of seconds until the forceful shutdown operation times out and exits the process.
+## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section
+##
+shutdown_timeout: 0
 
 ## Defines in seconds how often to check GitLab for a new builds
 ## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section
@@ -149,7 +154,7 @@ rbac:
   ##
   ## Read more about the recommended rules on the following link
   ##
-  ## ref: https://docs.gitlab.com/runner/executors/kubernetes.html#configuring-executor-service-account
+  ## ref: https://docs.gitlab.com/runner/executors/kubernetes.html#configure-runner-api-permissions
   ##
   rules: []
   # - resources: ["configmaps", "events", "pods", "pods/attach", "pods/exec", "secrets", "services"]
@@ -157,6 +162,9 @@ rbac:
   # - apiGroups: [""]
   #   resources: ["pods/exec"]
   #   verbs: ["create", "patch", "delete"]
+  # - apiGroups: [""]
+  #   resources: ["pods/log"]
+  #   verbs: ["get"]
 
   ## Run the gitlab-bastion container with the ability to deploy/manage containers of jobs
   ## cluster-wide or only within namespace
@@ -171,7 +179,7 @@ rbac:
   ## serviceAccountAnnotations:
   ##   eks.amazonaws.com/role-arn: "arn:aws:iam::{{ .Values.global.accountId }}:role/{{ .Values.global.iamRoleName }}"
   ##
-  ## ref: https://docs.aws.amazon.com/eks/latest/userguide/specify-service-account-role.html
+  ## ref: https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html
   ##
   # serviceAccountAnnotations: {}
 
@@ -229,7 +237,7 @@ metrics:
 
     ## Supply a tls configuration for the service monitor
     ##
-    ## ref: https://github.com/helm/charts/blob/master/stable/prometheus-operator/crds/crd-servicemonitor.yaml
+    ## ref: https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/charts/crds/crds/crd-servicemonitors.yaml
     ##
     # tlsConfig: {}
 
@@ -321,7 +329,7 @@ runners:
     [[runners]]
       [runners.kubernetes]
         namespace = "{{.Release.Namespace}}"
-        image = "ubuntu:22.04"
+        image = "alpine"
 
   ## Absolute path for an existing runner configuration file
   ## Can be used alongside "volumes" and "volumeMounts" to use an external config file
@@ -430,7 +438,7 @@ runners:
 # schedulerName: "my-custom-scheduler"
 
 ## Configure securitycontext for the main container
-## ref: http://kubernetes.io/docs/user-guide/security-context/
+## ref: https://kubernetes.io/docs/concepts/security/pod-security-standards/
 ##
 securityContext:
   allowPrivilegeEscalation: false
@@ -451,7 +459,7 @@ strategy: {}
   # type: RollingUpdate
 
 ## Configure securitycontext valid for the whole pod
-## ref: http://kubernetes.io/docs/user-guide/security-context/
+## ref: https://kubernetes.io/docs/concepts/security/pod-security-standards/
 ##
 podSecurityContext:
   runAsUser: 100
@@ -464,23 +472,37 @@ podSecurityContext:
   # fsGroup: 999
 
 ## Configure resource requests and limits
-## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+## ref: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 ##
 resources: {}
   # limits:
   #   memory: 256Mi
   #   cpu: 200m
+  #   ephemeral-storage: 512Mi
   # requests:
   #   memory: 128Mi
   #   cpu: 100m
+  #   ephemeral-storage: 256Mi
 
 ## Affinity for pod assignment
 ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
 ##
 affinity: {}
 
+## TopologySpreadConstraints for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/
+##
+topologySpreadConstraints: {}
+  # Example: The gitlab runner should be evenly spread across zones
+  # - maxSkew: 1
+  #   topologyKey: zone
+  #   whenUnsatisfiable: DoNotSchedule
+  #   labelSelector:
+  #     matchLabels:
+  #       foo: bar
+
 ## Node labels for pod assignment
-## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
 ##
 nodeSelector: {}
   # Example: The gitlab runner manager should not run on spot instances so you can assign
