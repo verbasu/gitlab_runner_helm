@@ -110,14 +110,12 @@ data:
     RUN_UNTAGGED="{{ ternary "--run-untagged=true" "" (and (hasKey .Values.runners "runUntagged") .Values.runners.runUntagged) }}"
     ACCESS_LEVEL="{{ ternary "--access-level=ref_protected" "" (and (hasKey .Values.runners "protected") .Values.runners.protected) }}"
 
-    if [ ! -z "$REGISTRATION_TOKEN" ] && [ "${REGISTRATION_TOKEN#glrt-}" != "$REGISTRATION_TOKEN" ]; then
-      RUN_UNTAGGED=""
-      ACCESS_LEVEL=""
-      {{- if eq (include "gitlab-runner.isAuthToken" . ) "false" }}
-      unset REGISTER_LOCKED
-      unset RUNNER_TAG_LIST
-      {{- end }}
-    fi
+    {{- if eq (include "gitlab-runner.isAuthToken" . ) "false" }}
+    RUN_UNTAGGED=""
+    ACCESS_LEVEL=""
+    unset REGISTER_LOCKED
+    unset RUNNER_TAG_LIST
+    {{- end }}
 
     for i in $(seq 1 "${MAX_REGISTER_ATTEMPTS}"); do
       echo "Registration attempt ${i} of ${MAX_REGISTER_ATTEMPTS}"
