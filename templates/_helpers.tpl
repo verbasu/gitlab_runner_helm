@@ -109,7 +109,7 @@ is an authentication token or not
 {{-   $isAuthToken = or (empty $token) (hasPrefix "glrt-" $token) -}}
 {{- else -}}
 {{-   $token := .Values.runnerToken -}}
-{{-   $isAuthToken = (hasPrefix "glrt-" $token) -}}
+{{-   $isAuthToken = and (not (empty $token)) (hasPrefix "glrt-" $token) -}}
 {{- end -}}
 {{- $isAuthToken -}}
 {{- end -}}
