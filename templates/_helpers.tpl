@@ -105,7 +105,11 @@ is an authentication token or not
 {{- $isAuthToken := false -}}
 {{- $hasRegistrationToken := hasKey .Values "runnerRegistrationToken" -}}
 {{- if $hasRegistrationToken -}}
-{{-   $isAuthToken = (hasPrefix "glrt-" .Values.runnerRegistrationToken) -}}
+{{-   $token := .Values.runnerRegistrationToken -}}
+{{-   $isAuthToken = or (empty $token) (hasPrefix "glrt-" $token) -}}
+{{- else -}}
+{{-   $token := default "" .Values.runnerToken -}}
+{{-   $isAuthToken = and (not (empty $token)) (hasPrefix "glrt-" $token) -}}
 {{- end -}}
 {{- $isAuthToken -}}
 {{- end -}}
