@@ -1,9 +1,5 @@
 ## v0.58.2 (2023-11-03)
 
-### New features
-
-- Update GitLab Runner version to v16.5.0
-
 ### Bug fixes
 
 - Update the default probeTimeoutSeconds to 3 seconds !448
