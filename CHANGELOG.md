@@ -1,3 +1,23 @@
+## v0.59.0 (2023-11-17)
+
+### New features
+
+- Update GitLab Runner version to v16.6.0
+- Added topologySpreadConstraints value !432 (Kostya Yag @kartograph9)
+
+### Bug fixes
+
+- Fix support for `runnerToken`, and prevent setting deprecated environment variables when using an external secret controller to inject an authentication token instead of passing the value in via helm !429 (Thomas Spear @tspearconquest)
+- Update the default probeTimeoutSeconds to 3 seconds !448
+- Update the default probeTimeoutSeconds to 3 seconds !448
+- Allow overriding image.registry to remove slash !447 (Keith Chason @keith.chason)
+- Update liveness probe to support authentication token !446
+- Update liveness probe to support authentication token !446
+
+### Maintenance
+
+- Make podSecurityContext values propagate correctly !449 (Viktor Lindström Ahlstedt @viktorla)
+
 ## v0.58.2 (2023-11-03)
 
 ### Bug fixes
