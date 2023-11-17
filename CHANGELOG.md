@@ -9,9 +9,7 @@
 
 - Fix support for `runnerToken`, and prevent setting deprecated environment variables when using an external secret controller to inject an authentication token instead of passing the value in via helm !429 (Thomas Spear @tspearconquest)
 - Update the default probeTimeoutSeconds to 3 seconds !448
-- Update the default probeTimeoutSeconds to 3 seconds !448
 - Allow overriding image.registry to remove slash !447 (Keith Chason @keith.chason)
-- Update liveness probe to support authentication token !446
 - Update liveness probe to support authentication token !446
 
 ### Maintenance
