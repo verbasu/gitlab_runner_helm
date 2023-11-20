@@ -1,3 +1,13 @@
+## v0.59.1 (2023-11-20)
+
+### New features
+
+- Update GitLab Runner version to v16.6.0
+
+### Bug fixes
+
+- Keep tag list for registration token !452
+
 ## v0.59.0 (2023-11-17)
 
 ### New features
