@@ -110,7 +110,7 @@ data:
     RUN_UNTAGGED="{{ ternary "--run-untagged=true" "" (and (hasKey .Values.runners "runUntagged") .Values.runners.runUntagged) }}"
     ACCESS_LEVEL="{{ ternary "--access-level=ref_protected" "" (and (hasKey .Values.runners "protected") .Values.runners.protected) }}"
 
-    {{- if eq (include "gitlab-runner.isAuthToken" . ) "false" }}
+    {{- if eq (include "gitlab-runner.isAuthToken" . ) "true" }}
     RUN_UNTAGGED=""
     ACCESS_LEVEL=""
     unset REGISTER_LOCKED
