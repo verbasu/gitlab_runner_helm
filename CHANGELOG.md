@@ -1,3 +1,9 @@
+## v0.59.1 (2023-11-20)
+
+### Bug fixes
+
+- Keep tag list for registration token !452
+
 ## v0.59.0 (2023-11-17)
 
 ### New features
